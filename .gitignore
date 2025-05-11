@@ -5,3 +5,4 @@
 *.log
 *.syntex.gz
 *.toc
+*.out
