@@ -1,7 +1,7 @@
 #latex auxiliary files
-.aux
-.fdb_latexmk
-.fls
-.log
-.syntex.gz
-.toc
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.syntex.gz
+*.toc
