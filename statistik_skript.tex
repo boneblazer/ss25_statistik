@@ -7,7 +7,8 @@
 \usepackage{verbatim}
 \usepackage{mathtools}
 \usepackage{makecell}
-
+\usepackage{hyperref}
+\usepackage{tikz}
 
 
 %margins
@@ -517,10 +518,10 @@ P([A_1\cap A_2 \cap A_3] \cup [A_1^c \cap A_2^c \cap A_3^c]) &= P(A_1\cap A_2 \c
 \noindent Eine \textit{Zufallsvariable} beschreibt eine reellwertige Größe, die vom Zufall, d.h. von $\omega$ abhängt. Genauer:
 
 \vspace{6pt}
-\noindent\textbf{Def.3.1}: Sei $\Omega$ eine Ergebnismenge. Eine \underline{Zufallsvariable} (ZV) X ist eine Abbildung von $\Omega$ nach $\mathbb{R}$, $X:\Omega \rightarrow \mathbb{R}$.
+\noindent\textbf{Def. 3.1}: Sei $\Omega$ eine Ergebnismenge. Eine \underline{Zufallsvariable} (ZV) X ist eine Abbildung von $\Omega$ nach $\mathbb{R}$, $X:\Omega \rightarrow \mathbb{R}$.
 
 \vspace{6pt}
-\noindent\textbf{Bsp.3.1:} Zweimaliger Münzwurf
+\noindent\textbf{Bsp. 3.1:}\label{bsp3.1} Zweimaliger Münzwurf
 \begin{center}
 \begin{tabular}{c|c}
     $\Omega$ & $X(w)=$Anzahl von K\\
@@ -558,6 +559,10 @@ P(X>Y) &= P(\{\omega\in\Omega: X(\omega)>Y(\omega)\})\\
 \end{align*}
 usw. 
 
+\subsection{Unabhängigkeit}
+\noindent Bisher: Unabhängigkeit von Ereignissen.
+\newline Jetzt: Unabhängigkeit von Zufallsvariablen
+
 \vspace{6pt}
 \noindent\textbf{Def. 3.2:} 
 \newline (a) ZV $X_1,\dots,X_n$ heißen unabhängig, falls
@@ -583,6 +588,81 @@ für alle $b_1,\dots,b_n\in\mathbb{R}$.
 \vspace{6pt}
 \noindent\textbf{Bsp. 3.3:} 
 $X_1$ sei ZV mit $P(X_1=-1)=P(X_1=0)=P(X_1=1)=\frac{1}{3}$ und ZV $X_2$ sei definiert durch $X_2=X_1^2+2$.
-\newline Für $b_1=0$ und $b_2=2$ gilt $P(X_1=b_1)=P(X_1=0)=\frac{1}{3}$, $P(X_2=b_2)=P(X_1^2+2=2)=P(X_1=0)=\frac{1}{3}$
+\newline Für $b_1=0$ und $b_2=2$ gilt 
+\begin{align*}0 
+P(X_1=b_1)&=P(X_1=0)=\frac{1}{3}\\
+P(X_2=b_2)&=P(X_1^2+2=2)=P(X_1=0)=\frac{1}{3}\\
+%\Rightarrow P(X_1=b_1,X_2=b_2)&=P(X_1=0,X_1^2+2=2)\\
+%&=P(X_1=0)=\frac{1}{3}
+\end{align*}
+\begin{align*}
+\Rightarrow P(X_1=b_1,X_2=b_2)&=P(X_1=0,X_1^2+2=2)\\
+&=P(X_1=0)=\frac{1}{3}
+\end{align*}
+und daher $P(X_1=b_1,X_2=b_2)\neq P(X_1=b_1)\cdot P(X_2=b_2)$.
+\newline $\Rightarrow X_1$ und $X_2$ sind nicht unabhängig.
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 3.4:} n-maliger Würfelwurf (mit Laplace-Würfel)
+\newline $\Omega=\{\omega=(\omega_1,\dots,\omega_n): \omega_i\in\{1,\dots,6\}; 1\leq i\leq n\}$
+\newline $|\Omega| = 6^n, P(A)= \frac{|A|}{|\Omega|}$ für alle $A\in\Omega$
+\newline $X_i=$ Ergebnis des i-ten Wurfs
+\newline $X_i((\omega_1,\dots,\omega_n))=\omega_i$
+\newline Behauptung: $X_1,\dots,X_n$ sind unabhängig. Nach Satz 3.1 reicht es zu zeigen:
+\newline $P(X_1=b_1,\dots,X_n=b_n)=P(X_1=b_1)\cdot\dots\cdot P(X_n=b_n) \hspace{3pt}\forall \hspace{2pt}b_1,b_2,\dots,b_n\in\mathbb{R}$.
+\vspace{4pt}
+\newline\textbf{Fall 1:} Ein $b_i$ ist keine mögliche Augenzahl $\Rightarrow$ beide Seiten = 0
+\newline\textbf{Fall 2:} $b_1,\dots,b_n\in\{1,\dots,6\}$:
+\begin{align*}
+P(X_1=b_1,\dots,X_n=b_n) &= P(\{\omega\in\Omega: X_1(\omega)=b_1,\dots,X_n(\omega)=b_n\})\\
+&= P(\{\omega\in\Omega: \omega_1=b_1,\dots,\omega_n=b_n\})\\
+&= P(\{b_1,\dots,b_n\})\\
+&= \frac{1}{|\Omega|} = \frac{1}{6^n}
+\end{align*}
+und 
+\begin{align*}
+P(X_i=b_i) &= P(\{\omega\in\Omega:X_i(\omega)=b_i\})\\
+&= P(\{\omega\in\Omega:\omega_i=b_i\})\\
+&= \frac{6^{n-1}}{6^n}=\frac{1}{6}, i=1,\dots,6
+\end{align*}
+$\Rightarrow P(X_1=b_1)\cdot\dots\cdot P(X_n=b_n)=\frac{1}{6^n}=P(X_1=b_1,\dots,X_n=b_n)$. 
+\newline Es folgt, dass $X_1,\dots,X_n$ unabhängig sind.
+
+\subsection{Verteilungsfunktionen, W'keitsfunktionen und Dichten}
+
+\noindent\textbf{Def. 3.3:} Sei X eine ZV. 
+Die Verteilungsfunktion (VF) $F=F_x$ von x ist definiert durch $F(x)=F_x(x)=P(X\leq x) \hspace{3pt}\forall\hspace{2pt} x\in\mathbb{R}$.
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 3.5:} Für X wie in Bsp. \ref{bsp3.1}: $P(X=0)=\frac{1}{4}, P(X=1)=\frac{1}{2}, P(X=2)=\frac{1}{4}$.
+
+\begin{equation*}
+\Rightarrow F_x(x)=P(X\leq x)=\begin{cases}
+P(\emptyset)=0 & x<0\\
+P(X=0)=\frac{1}{4} & 0\leq x<1\\
+P(X=0)+P(X=1)=\frac{3}{4} & 1\leq x<2\\
+1 & x\geq2
+\end{cases}
+\end{equation*}
+        
+\begin{tikzpicture}
+    \draw[step=1cm,gray,very thin] (0,0) grid (8,8);
+    \draw[thick,->] (0,0) -- (8,0) node[anchor=north west] {x};
+    \draw[thick,->] (0,0) -- (0,8) node[anchor=south east] {$F_x(x)$};
+    \foreach \x in {1,2,3}
+        \draw(2*\x,1pt) -- (2*\x,-1pt) node[anchor=north] {$\x$};
+    \foreach \y in {1,2,3}
+        \draw(1pt,2*\y) -- (-1pt,2*\y) node[anchor=east] {$\y$};
+    \draw[red,thick] (0,2) -- (2,2);
+    \draw[red,thick] (2,4) -- (4,4);
+    \draw[red,thick] (4,6) -- (8,6);
+    \fill[red] (0,2) circle (0.1cm);
+    \fill[red] (2,4) circle (0.1cm);
+    \fill[red] (4,6) circle (0.1cm);
+\end{tikzpicture}
+
+
+
+
 
 \end{document}
