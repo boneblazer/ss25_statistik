@@ -32,6 +32,13 @@
 \newcommand\stw{\overset{\mathclap{\scriptscriptstyle (2.1.2)}}{=}}
 \newcommand\Btuwon{\overset{\mathclap{\scriptscriptstyle (B.2.1)}}{=}}
 \newcommand\Dtuwon{\overset{\mathclap{\scriptscriptstyle (D.2.1)}}{=}}
+\newcommand\fover{\overset{\mathclap{\scriptscriptstyle (f)}}{=}}
+
+\newcommand\eqsigmaadd{\overset{\mathclap{\scriptscriptstyle (\sigma\text{-Add.})}}{=}}
+\newcommand\eqthreetwog{\overset{\mathclap{\scriptscriptstyle (Satz 3.2(g))}}{=}}
+\newcommand\impthreetwog{\overset{\mathclap{\scriptscriptstyle (Satz 3.2(g))}}{\Rightarrow}}
+
+
 
 %unused
 %Falls die Ereignisse $A_1,A_2,\dots$ eine Zerlegung von $\Omega$ bilden, d.h. falls gilt $A_1,A_2,\dots$ sind paarweise disjunkt und $A_1 \cup A_2 \cup \dots = \Omega$, 
@@ -661,7 +668,117 @@ P(X=0)+P(X=1)=\frac{3}{4} & 1\leq x<2\\
     \fill[red] (4,6) circle (0.1cm);
 \end{tikzpicture}
 
+\subsubsection{Satz 3.2: Eigenschaften von VF} 
+Sei X eine ZV und F ihre VF. Dann gilt
+\begin{itemize}
+    \item[(a)] F ist monoton wachsend.
+    \newline Für alle $x,y\in\mathbb{R}$ mit $x<y$ gilt $F(x)\leq F(y)$.
+    \item[(b)] $\lim_{x\rightarrow-\infty}F(x)=0, \lim_{x\rightarrow\infty}F(x)=1$
+    \item[(c)] F ist rechtsseitig stetig.
+    \item[(d)] $P(X>x)=1-F(x), x\in\mathbb{R}$
+    \item[(e)] $P((a<X\leq b))= $
+    \item[(f)] $P(X<x)=F(x-)$, wobei $F(x-)=lim_{y\rightarrow x}F(y)$ der linksseitige Grenzwert von F an der stelle x ist, d.h., der Grenzwert der Werte $F(y)$ wenn y sich x von links nähert.
+    \item[(g)] $P(X=x)=F(x)-F(x-) =$ Sprunghöhe von F an der Stelle X
+    \newline Insb.
+    \newline
+    \begin{tikzpicture}
+        \draw[step=1cm,gray,very thin] (0,0) grid (4,4);
+        \draw[thick,->] (0,0) -- (4,0) node[anchor=north west] {x};
+        \draw[thick,->] (0,0) -- (0,4) node[anchor=south east] {$F(x)$};
+        \draw(2,1pt) -- (2,-1pt) node[anchor=north] {$x_c$};
+        \draw(1pt,1.5) -- (-1pt,1.5) node[anchor=east] {$P(X<x_c)$};
+        \draw(1pt,2.5) -- (-1pt,2.5) node[anchor=east] {$P(X\leq x_c)$};
+        \fill[red] (2,2.5) circle (0.1cm);
+        \draw[red] (2,1.5) arc (-15:-85:2);
+        \draw[red] (2,2.5) arc (180:110:1.3);
+    \end{tikzpicture}
+    \newline $P(X=x)=P(X\leq x_c)-P(X<x_c)$ (s. Sprung in der Grafik)
+    \newline $P(X=x)=0 \Leftrightarrow$ F ist stetig an der Stelle X
+    \newline $P(X=x)=0$ für alle $x\in\mathbb{R} \Leftrightarrow$ F ist stetig auf $\mathbb{R}$
+    \item[(h)] $P(X\geq x)=1-F(x-)$
+    \newline $ P(X\leq X \leq b) = F(b)-F(a-), \hspace{15pt} a\leq b$
+\end{itemize}
 
+\vspace{6pt}
+\noindent\textbf{Beweis:} 
+\begin{itemize}
+\item[(a),(e)] Für $a<b$ gilt $0\leq P(a<X\leq b) = P(\{X\leq b\}\backslash \{X\leq a\}) = $
+    \newline $= P(X\leq b) - P(X\leq a) = F(b) - F(a)$
+\item[(b),(c)] Übungsaufgabe 21
+\item[(d)] $P(X>x) = P(\{X\leq x\}^c) = 1-P(X\leq x)=1-F(x)$
+\item[(f)] $P(X<x)=P(\bigcup_{n=1}^{\infty}\{X\leq x-\frac{1}{n}\})$
+    \newline Übungsaufgabe 20 $= \lim_{n\rightarrow\infty}P(X\leq x-\frac{1}{n}) = \lim_{n\rightarrow\infty}F(x-\frac{1}{n}) = F(x-)$
+    \newline $\{X\leq x-\frac{1}{n}\}\subset\{X\leq x-\frac{1}{n+1}\}$
+\item[(h)] $P(X\leq x) = P(\{X<x\}^c)=1-P(X<x) \fover 1-F(x-)$
+    \newline $P(a\leq X\leq b) = P(\{x\leq b\} \backslash \{X<a\}) = P(X\leq b) - P(X<a) = F(b) - F(a-)$.
+    \newline Für $a=b=x$ ergibt sich (g).
+\end{itemize}
+
+\vspace{6pt}
+\noindent\textbf{Bem. 3.2:} Man kann zeigen: 
+\begin{itemize}
+\item[(a)] Jede Funktion $F:\mathbb{R}\rightarrow\mathbb{R}$, die $(a)-(c)$ aus Satz 3.2 erfüllt, ist die VF einer geeigneten ZV.
+\item[(b)] Seien $X$ und $Y$ ZF mit VF $F_x$ und $F_y$. Dann gilt
+    \newline $F_x(x)=F_y(x)$ für alle $x\in\mathbb{R} \Leftrightarrow P(X\in B) = P(Y\in B)$ für alle $B\in\mathbb{R}$.
+    \newline Falls $F_x(x)=F_y(x)$, dann sagt man \glqq X und Y sind identisch verteilt\grqq.
+\end{itemize}
+
+\subsection{Diskrete ZV}
+\vspace{6pt}
+\noindent\textbf{Def. 3.4:} Eine ZV X heißt \textit{diskret}, falls X höchstens abzählbar viele Werte $x_1,x_2,\dots$ annimmt. 
+\newline Ist X eine diskrete ZV, dann heißt die durch 
+\[f(x)=P(X=x) \hspace{15pt} x\in\mathbb{R},\]
+definierte Funktion $f:\mathbb{R}\rightarrow\mathbb{R}$ die \textit{Wahrscheinlichkeitsfunktion} von X.
+
+\vspace{6pt}
+\noindent Sei X eine diskrete ZV mit W'funktion f und VF F. Bezeichne die möglichen Werte von X mit $x_1,x_2,\dots$, d.h., 
+\[\{x_1,x_2,\dots\}=\{X(a):\omega\in\Omega\}\]
+Dann gilt für jedes $B\in\mathbb{R}$,
+\[P(X\in B)=P(\bigcup_{x\in B}\{X=x\})=\sum_{x_i\in B}P(X=x)=\sum_{x_i\in B}f(x_i)\]
+
+\begin{align*}
+\sum_{x_i\in\mathbb{R}}f(x_i) &= P(X\in\mathbb{R})=1 \\ 
+F(x) &= P(X\leq x) = \sum_{x_i\leq x}f(x), \hspace{15pt}x\in\mathbb{R}\\
+f(x) &= P(X=x)\hspace{15pt}\eqthreetwog \hspace{15pt} F(x)-F(x-) \hspace{15pt} x\in\mathbb{R}\\
+\end{align*}
+
+\vspace{6pt}
+\noindent Setze
+\[P_x(B)=P(X\in B) \text{ für jedes } B\in\mathbb{R}.\]
+Dann ist $P_x$ ein W-Maß auf $\mathbb{R}$, denn:
+\begin{itemize}
+\item[(i)] $P_x(B)\geq 0$ für alle $B\subset\mathbb{R}$
+\item[(ii)] $P_x(\mathbb{R})=P(X\in\mathbb{R})=1$
+\item[(iii)] $\sigma$-Additivität
+    \newline Seien $B_1,B_2,\dots\subset\mathbb{R}$ paarweise disjunkt
+    \newline $\Rightarrow P_x(B_1\cup B_2\cup\dots)=P(X\in B_1\cup B_2\cup\dots) = P(\{X\in B_1\}\cup\{X\in B_2\}\cup\dots)$
+    \newline $ \eqsigmaadd \hspace{12pt}\sum_{i}P(X\in B_i)=\sum_{i}P_x(B_i)$.
+\end{itemize}
+Das W-Maß $P_x$ heißt die Verteilung von X.
+
+\subsection{Stetige ZV}
+\vspace{6pt}
+\noindent\textbf{Def. 3.5:} Eine ZV X heißt \textit{stetig}, falls es eine Funktion $f:\mathbb{R}\rightarrow\mathbb{R}$ gibt, so dass 
+\begin{align*}
+f(x) &\geq 0 \hspace{15pt}\forall x\in\mathbb{R},\\
+\int_{-\infty}^{\infty}f(x)dx &= 1 \\
+\text{und}\hspace{20pt}P(X\leq x) &= \int_{-\infty}^{\infty}f(u)du \hspace{15pt}\forall x\in\mathbb{R}.
+\end{align*}
+F heißt \textit{Dichte} oder \textit{Wahrscheinlichkeitsdichte} von X.
+
+\vspace{6pt}
+\noindent Sei X eine stetige ZV mit Dichte f und VF F
+\newline $\rightarrow$ F ist stetig $\hspace{12pt}\impthreetwog\hspace{12pt} P(X=x)=0$ für alle $x\in\mathbb{R}$.
+\newline $\Rightarrow$ Für $a\leq b$ gilt
+\begin{align*}
+P(a\leq X\leq b) &= P(X=a) + P(a<X<b) + P(X=b) = P(a<X<b)\\
+&= P(a\leq X<b) = P(a<X\leq b) = F(b)-F(a)\\
+&= \int_{-\infty}^{a}f(x)dx - \int_{-\infty}^{b}f(x)dx = \int_{a}^{b}f(x)dx\\
+\end{align*}
+
+\noindent Ist die Dichte f an der Stelle $x_c$ stetig, so gilt 
+\[F'(x_c)=f(x_c)\]
+f lässt sich aus F gewinnen.
 
 
 
