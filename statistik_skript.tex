@@ -245,7 +245,7 @@ Ergebnisse sind Folgen von Kopf(K) und Zahl(Z) der Länge n: $\Omega = \{(x_1,..
 Verwende Laplace-Wahrscheinlichkeiten: $P(A)=\frac{|A|}{|\Omega|}=\frac{|A|}{2^n}$ für alle $A\in\Omega$.
 Wie groß ist die Wahrscheinlichkeit von $A_j$: \glqq K fällt im j-ten Wurf zum 1. Mal\grqq?
 \[A_j = \{x_1,...,x_n\}: x_i=Z \text{ für } 1 \leq i \leq j-1; x_j=K; x_i \{K,Z\} \text{ für } j+1 \leq i \leq n\]
-\[A_j = 1^{j-1}*1*2^{n-j}=2^{n-j} \rightarrow P(A_j) = \frac{|A_j|}{|\Omega|}= \frac{2^{n-j}}{2^{n}}\]
+\[A_j = 1^{j-1}\cdot 1\cdot 2^{n-j}=2^{n-j} \rightarrow P(A_j) = \frac{|A_j|}{|\Omega|}= \frac{2^{n-j}}{2^{n}}\]
 
 \noindent\textbf{Bsp. 1.8:} Geburtstagsproblem.
 W'keit, dass von k Personen 2 oder mehr am selben Tag im Jahr Geburtstag haben?
@@ -254,9 +254,9 @@ $P(A)=\frac{|A|}{|\Omega|}=\frac{|A|}{365}$ für alle $A\subset\Omega$.
 $\text{Sei }B=\{(x_1,...,x_k) \in\Omega: \text{mind. 2 der } x_i \text{ stimmen überein}\}$
 \begin{align*}
     |B^c| &= \{(x_1, \dots ,x_k) \in \Omega: x_i \neq x_j \text{ für }i \neq j\} \\
-    &= 365 \times 364 \times 363 \times \dotsm \times (365-k+1) \\
+    &= 365 \cdot 364 \cdot 363 \cdot\dots\cdot (365-k+1) \\
     &= \prod_{i=0}^{k-1}(365-i) \\
-    \rightarrow P_k = P(B) &= \frac{|\Omega| - |B^c|}{|\Omega|} = 1 - \frac{1}{365} \times \prod_{i=0}^{k-1}(365-i) \\
+    \rightarrow P_k = P(B) &= \frac{|\Omega| - |B^c|}{|\Omega|} = 1 - \frac{1}{365}\cdot \prod_{i=0}^{k-1}(365-i) \\
     &= 1 - \prod_{i=0}^{k-1}(1-\frac{i}{365}) \text{           z.B. } P_{30} = 0,705
 \end{align*}
 
@@ -485,8 +485,8 @@ P(A\cap B^c) &\eqonefive P(A)-P(A\cap B)\\
 $A_1,A_2,\dots$ heißen \textit{paarweise unabhängig}, falls
 \[P(A_i\cap A_j)=P(A_i)\cdot P(A_j)\]
 für jedes Paar von Indizes $i\neq j$.
-\newline $A_1,A_2,\dots$ heißen \textit{unabhängig}, falls für jede endliche Auswahl von verschiedenen Indices $i_1,i_k$ gilt 
-\[P(i_1\cap i_k)=P(i_1)P(i_k)\]
+\newline $A_1,A_2,\dots$ heißen \textit{unabhängig}, falls für jede endliche Auswahl von verschiedenen Indices $i_1,\dots,i_k$ gilt 
+\[P(A_{i_1}\cap\dots\cap A_{i_k})=P(A_{i_1})\cdot\dots\cdot P(A_{i_k})\]
 \newline \textbf{Bem.2.5:} Unabhängigkeit $\Rightarrow$ paarweise Unabhängigkeit, aber die Implikation gilt NICHT in die andere Richtung. 
 Paarweise Unabhängigkeit ist außerdem oft zu schwach, um interessante Resulatate zu erhalten.
 
@@ -573,7 +573,7 @@ usw.
 \vspace{6pt}
 \noindent\textbf{Def. 3.2:} 
 \newline (a) ZV $X_1,\dots,X_n$ heißen unabhängig, falls
-\[ (*) \hspace{20pt} P(X_1\in B_1,\dots,X_n\in B_n)=P(X_1\in B_1)*\dots*P(X_n\in B_n)\] für alle $B_1,\dots,B_n \in \mathbb{R}$.
+\[ (*) \hspace{20pt} P(X_1\in B_1,\dots,X_n\in B_n)=P(X_1\in B_1)\cdot\dots\cdot P(X_n\in B_n)\] für alle $B_1,\dots,B_n \in \mathbb{R}$.
 \newline (b) Ist $X_1,X_2,\dots$ eine unendliche Folge von ZV, dann heißen $X_1,X_2,\dots$ unabhängig, falls $(*)$ für alle $n\geq 2$ gilt.
 
 \vspace{6pt}
