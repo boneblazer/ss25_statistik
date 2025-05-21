@@ -921,9 +921,88 @@ Anrufe erfolgen unabhängig.
 
 \subsubsection{Hypergeometrische Verteilung}
 Warenlieferung enthalten N Stücken, davon M defekt (N-M intakt)
-\newline Es werden n Stücke ohne Zurücklegen zufällig gezogen, wobei $n\leq N$.
+\newline Es werden n Stücke ohne Zurücklegen zufällig gezogen, wobei $n\leq N$. Sei
+\newline X = Anzahl der defekten Stücke in Stichprobe vom Umfang n
+\newline Die W-funktion von X ist gegeben durch 
+\begin{equation*}
+f(x))= \begin{cases}
+\frac{\binom{M}{x}\binom{N-M}{n-x}}{\binom{N}{n}}, & x=0,1,\dots,n\\
+0, & \text{sonst}\\
+\end{cases}
+\end{equation*} 
 
+\noindent Daher wird die Konvention
+\[\binom{m}{k}=0\hspace{15pt}\text{ falls } k<0 \text{ oder } k>m\]
+benutzt.
+\newline Für $X\in\mathbb{N}_0$ gilt
+\begin{align*}
+f(X)<0 &\Leftrightarrow 0\leq x\leq M \text{ und } 0\leq n-x\leq N-M\\
+&\Leftrightarrow x\in\{max(0,n-N+M),\dots,min(n,M)\}\\
+\end{align*}
 
+\noindent Eine ZV mit W-funktion f heißt \textit{hypergeometrisch verteilt} mit Parametern N,M, und n.
+\newline Bez. X$\sim$Hyp(N,M,n).
 
+\vspace{6pt}
+\noindent\textbf{Bsp. 3.8:} Lotto 6 aus 49 
+\newline Jemand hat die Zahlen 1,2,\dots,6 getippt. W'keit für 3 Richtige?
+
+\vspace{4pt}
+ \begin{tabular}{c c c}
+    Warenlieferung & 49 Kugeln & $N=49$\\
+    defekt & richtige Zahl $(1,\dots,6)$ & $M=6$\\
+    intakt & falsche Zahl $(7,\dots,49)$ & $N-M=43$\\
+\end{tabular}
+\vspace{4pt}
+\newline $n=6$ Kugeln werden ohne Zurücklegen gezogen.
+\newline $X=$ Anzahl richig getippter Zahlen.
+\newline W'keit für 3 Richtige:
+\[P(X=3)=\frac{\binom{6}{3}\binom{49-6}{6-3}}{\binom{49}{6}}\approx0,01765\]
+
+\subsection{Beispiele stetiger Verteilungen}
+
+\subsubsection{Gleichverteilung}
+\noindent\textbf{Gleichverteilung} auf $[a,b], \hspace{15pt} a<b$.
+\newline Dichte
+\begin{equation*}
+    f(x)=\begin{cases}
+    \frac{1}{b-a}, & x\in[a,b]\\
+    0, & x\in\mathbb{R}\backslash[a,b]\\
+    \end{cases}
+\end{equation*}
+
+\begin{tikzpicture}
+    \draw[step=1cm,gray,very thin] (0,0) grid (4,4);
+    \draw[thick,->] (0,0) -- (4,0) node[anchor=north west] {x};
+    \draw[thick,->] (0,0) -- (0,4) node[anchor=south east] {$f(x)$};
+    \draw(1,1pt) -- (1,-1pt) node[anchor=north] {$a$};
+    \draw(3,1pt) -- (3,-1pt) node[anchor=north] {$b$};
+    \draw(1pt,2) -- (-1pt,2) node[anchor=east] {$\frac{1}{b-a}$};
+    \draw[red,thick] (0,0) -- (1,0);
+    \draw[red,thick] (1,2) -- (3,2);
+    \draw[red,thick] (3,0) -- (4,0);
+\end{tikzpicture}
+
+\noindent VF
+\begin{equation*}
+F(x)=\int_{-\infty}^{x}f(u)du = \begin{cases}
+0, & x<a\\
+\int_{a}^{x}\frac{1}{b-a}du=\frac{x-a}{b-a}, & a\leq x\leq b\\
+1, & x>b\\
+\end{cases}
+\end{equation*}
+
+\begin{tikzpicture}
+    \draw[step=1cm,gray,very thin] (0,0) grid (4,4);
+    \draw[thick,->] (0,0) -- (4,0) node[anchor=north west] {x};
+    \draw[thick,->] (0,0) -- (0,4) node[anchor=south east] {$F(x)$};
+    \draw(1,1pt) -- (1,-1pt) node[anchor=north] {$a$};
+    \draw(3,1pt) -- (3,-1pt) node[anchor=north] {$b$};
+    \draw(1pt,3) -- (-1pt,3) node[anchor=east] {$1$};
+    \draw[red,thick] (0,0) -- (1,0);
+    \draw[red,thick] (1,0) -- (3,3);
+    \draw[red,thick] (3,3) -- (4,3);
+\end{tikzpicture}
 \end{document}
+
 
