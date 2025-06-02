@@ -37,6 +37,12 @@
 \newcommand\eqsigmaadd{\overset{\mathclap{\scriptscriptstyle (\sigma\text{-Add.})}}{=}}
 \newcommand\eqthreetwog{\overset{\mathclap{\scriptscriptstyle (Satz 3.2(g))}}{=}}
 \newcommand\impthreetwog{\overset{\mathclap{\scriptscriptstyle (Satz 3.2(g))}}{\Rightarrow}}
+\newcommand\sfothree{\overset{\mathclap{\scriptscriptstyle Satz \hspace{2pt} 4.3 \hspace{2pt} mit \hspace{2pt} g(x)=x^2}}{=}}
+\newcommand\sfofoa{\overset{\mathclap{\scriptscriptstyle Satz \hspace{2pt} 4.4 \hspace{2pt} (a)}}{=}}
+\newcommand\bspfoonc{\overset{\mathclap{\scriptscriptstyle Bsp. \hspace{2pt} 4.1 \hspace{2pt} (c)}}{=}}
+\newcommand\sfofoe{\overset{\mathclap{\scriptscriptstyle Satz \hspace{2pt} 4.4 \hspace{2pt} (e)}}{=}}
+\newcommand\sfofoc{\overset{\mathclap{\scriptscriptstyle Satz \hspace{2pt} 4.4 \hspace{2pt} (c)}}{=}}
+
 
 
 
@@ -1041,5 +1047,125 @@ F(x)=\int_{-\infty}^{x}f(u)du = \begin{cases}
     \draw[red,thick] (0,0) -- (1,0);
     \draw[red,thick] (1,0) -- (3,3);;
 \end{tikzpicture}
+
+
+
+%fehlt!!!
+
+
+\vspace{6pt}
+\noindent\textbf{Satz 4.3:} Seien X eine ZV und $g:\mathbb{R}\rightarrow\mathbb{R}$ eine Funktion. Dann gilt
+\begin{equation*}
+E[g(X)] = \begin{cases}
+\sum_{i}^{}g(X_i)P(X=x_i) & \text{falls X diskret ist mit möglichen Werten  } x_1,x_2,\dots\\
+\int_{-\infty}^{\infty}g(x)f(x)dx & \text{falls X stetig ist und Dichte f hat}\\
+\end{cases}
+\end{equation*}
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 4.5:} X$\sim$N(0,1)
+\begin{align*}
+E(X^2) &\hspace{30pt}\sfothree\hspace{22pt} \int_{-\infty}^{\infty}x^2\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}dx = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}(-x)(-xe^{-\frac{-x^2}{2}})dx\\
+&= \frac{1}{\sqrt{2\pi}}([-xe^{-\frac{-x^2}{2}}]_{-\infty}^[infty]+\int_{-\infty}^{\infty}e^{-\frac{-x^2}{2}}dx)\\
+&= \int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}e^{-\frac{-x^2}{2}}dx
+\end{align*} %that bottom right corner check thing
+\newline partielle Integration
+\begin{align*}
+u(x)=-x & v(x) = e^{-\frac{-x^2}{2}}\\
+u'(x)=-1 & v'(x) = -xe^{-\frac{-x^2}{2}}\\
+\end{align*}
+
+\vspace{6pt}
+\noindent\textbf{Varianz}
+\newline Die \textit{Varianz} einer ZV X ist det. durch 
+\[Var(x):=E[(X-E(X))^2]\]
+und die \textit{Standardabweichung} von X ist 
+\[\sigma(X):=\sqrt{Var(X)}\]
+$Var(X)$ und $\sigma(X)$ sind Maße für die Streuung der Verteilung von X um E(X)
+
+\vspace{6pt}
+\noindent\textbf{Satz 4.4:} Sei X eine ZV. Dann gilt
+\begin{itemize}
+\item[(a)] $Var(X)=E(X^2)-[E(X)]^2$
+\item[(b)] Ist P(X=a)=1 für eine Konstante $A\in\mathbb{R}$, dann $Var(X)=c$.
+\newline Ist $Var(X)=c$, dann folgt $P(X=E[X])=1$, d.h. mit W'keit 1 ist X gleich der Konstanten E(X).
+\item[(c)] $Var(a+bX)=Var(bX)=b^2Var(X)$ für alle $a,b\in\mathbb{R}$
+\item[(d)] Sei $Var(X)\in(0,\infty)$. Für die standardisierte ZV 
+\[X* = \frac{X-E(X)}{\sqrt{Var(X)}}\]
+gilt $E(X*)=0, Var(X*)=1$.
+\item[(e)] Sind $X_1,\dots,X_n$ unabhängige ZV, dann gilt
+\[Var(\sum_{i=1}^{n}X_i)=\sum_{i=1}^{n}Var(X_i)\]
+\end{itemize}
+
+\noindent Beweis nur für (a):
+\begin{align*}
+Var(X) &= E[(X-E(X))^2]\\
+&= E[X^2-2XE(X)+[E(X)]^2]\\
+&= E(X^2)-2E[XE(X)]+E[[E(X)]^2]\\
+&= E(X^2) - 2E(X)E(X) + (E(X))^2\\
+&= E(X^2)-[E(X)]^2\\
+\end{align*}
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 4.6:} (a) X$\sim$Ber(p)
+\newline Da $X=0$ oder $X=1$, folgt $X^2=X$. 
+\newline $\Rightarrow Var(X) \hspace{12pt}\sfofoa\hspace{12pt} E(X^2)-[E(X)]^2=E(X)-[E(X)]^2 \hspace{12pt}\bspfoonc\hspace{12pt} p-p^2 = p(1-p)$
+\vspace{4pt}
+\noindent (b) X$\sim$Bin(n,p)
+\newline $\Rightarrow X=X_1+\dots+X_n,$ $X_i$ unabhängig, $X_i\sim$Ber(p)
+\newline $\Rightarrow Var(X)= Var(X_1+\dots+X_n) \hspace{12pt}\sfofoe\hspace{12pt} Var(X_1)+\dots+Var(X_n)=np(1-p)$
+\vspace{4pt}
+\noindent (b) X$\sim N(\mu,\sigma^2)$, Var(X)=?
+\newline Sei $Y\sim N(0,1)$
+\newline $\Rightarrow$ X hat dieselbe Verteilung wie $\mu+\sigma Y$
+\newline $\Rightarrow Var(X)= Var(\mu + \sigma Y) \hspace{12pt}\sfofoc\hspace{12pt} \sigma^2Var(Y) = \sigma^2(E(Y^2)-(E(Y))^2)=\sigma^2$
+
+§4(C) Kovarianz und Korrelation
+\newline Sind X und Y ZV mit EW $\mu_x=E(X),\mu_y=E(Y)\in\mathbb{R}$.
+\newline Die \textit{Kovarianz} von X und Y ist def. durch
+\[Cov(X,Y):=E[(X-\mu_x)(Y-\mu_y)]\]
+\newline Der \textit{Korrelationskoeffizient} von X und Y ist def. durch 
+\[\rho(X,Y):=\frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}\]
+falls $Var(X),Var(Y)\in(0,\infty)$
+\newline $\rho(X,Y)$ ist ein Maß für den linearen Zusammenhang zwischen X und Y.
+\newline Es gilt 
+\[-1\leq\rho(X,Y)\leq1\]
+$\rho(X,Y)=1 \Leftrightarrow$ es ex. $A\in\mathbb{R},b>0$ mit $P(Y=a+bX)=1$.
+$\rho(X,Y)=-1 \Leftrightarrow$ ex ex. $A\in\mathbb{R},b<0$ $P(Y=a+bX)=1$.
+
+\vspace{6pt}
+\noindent X und Y heißen \textit{unkorreliert}, falls $\rho(X,Y)=0$.
+\newline Es gilt 
+\begin{align*}
+Cov(X,Y) &= E(XY-\mu_xY-X\mu_y+\mu_x\mu_y)\\
+&= 
+\end{align*}
+$\Rightarrow$ Sind X und Y unabhängig, dann sind X und Y unkorreliert. Umkehrung gilt nicht.
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 4.7:} Sei $P(X=-1)=P(X=0)=P(X=1)=\frac{1}{3}, Y:=X^2$
+\newline $\Rightarrow E(X)=0,E(XY)=E(X^3)=0$, also
+\newline $Cov(X,Y)=E(XY)-E(X)E(Y)=0$
+\newline X und Y sind unkorreliert, aber
+\newline $P(X=0|Y=0)=1 \neq P(X=0)$
+\newline X und Y sind nicht unabhängig.
+
+\vspace{6pt}
+\noindent\textbf{Satz 4.5:} Seien $X,Y,X_1,\dots,X_n,Y_1,\dots,Y_n$ ZV
+\begin{itemize}
+\item[(a)] $Cov(X,Y) = Cov(Y,X)$
+\item[(b)] $Cov(X,X) = Var(X)$
+\item[(c)] $Cov(a+bX,c+dY) = bdCov(X,Y)$ für alle $a,b,c,d\in\mathbb{R}$
+\item[(d)] $Cov(\sum_{i=1}^{m}a_iX_i,\sum_{j=1}^{n}b_jY_j) = \sum_{i=1}^{m}\sum_{j=1}^{n}a_ib_jCov(X_i,Y_j)$ für alle $a_1,\dots,a_m,b_1,\dots,b_n\in\mathbb{R}$
+\item[(e)] $Var(\sum_{i=1}^{m}X_i)=\sum_{i=1}^{m}Var(X_i)+2\sum_{i\neq j}Cov(X_i,X_j)$
+\end{itemize} 
+
+\noindent\textbf{Bew. (c):}
+\begin{align*}
+& Cov(a+bX,c+dY)\\
+=&E[(a+bX-E(a+bX))(c+dY-E(c+dY))]\\
+=&E[b(X-E(X))d(Y-E(Y))]\\
+=&b\cdot d\cdot Cov(X,Y)\\
+\end{align*}
 
 \end{document}
