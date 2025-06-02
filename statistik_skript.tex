@@ -764,7 +764,7 @@ f(x) &\geq 0 \hspace{15pt}\forall x\in\mathbb{R},\\
 \int_{-\infty}^{\infty}f(x)dx &= 1 \\
 \text{und}\hspace{20pt}P(X\leq x) &= \int_{-\infty}^{\infty}f(u)du \hspace{15pt}\forall x\in\mathbb{R}.
 \end{align*}
-F heißt \textit{Dichte} oder \textit{Wahrscheinlichkeitsdichte} von X.
+f heißt \textit{Dichte} oder \textit{Wahrscheinlichkeitsdichte} von X.
 
 \vspace{6pt}
 \noindent Sei X eine stetige ZV mit Dichte f und VF F
@@ -1003,6 +1003,43 @@ F(x)=\int_{-\infty}^{x}f(u)du = \begin{cases}
     \draw[red,thick] (1,0) -- (3,3);
     \draw[red,thick] (3,3) -- (4,3);
 \end{tikzpicture}
+
+
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 3.9:} Ist X$\sim$Uni(0,1), dann gilt für $0\leq c \leq d \leq 1$
+\[P(c\leq X\leq d) = \int_{c}^{d}1dx=d-c\]
+und für $c<0\leq d\leq 1$ gilt
+\[P(c\leq X\leq d)=\int_{c}^{0}0dx + \int_{0}^{d}1dx=d\]
+
+\subsubsection{Exponentialverteilung}
+\noindent mit Parameter $\lambda>0$
+\newline Bez. X$\sim$Exp($\lambda$)
+\newline Diese Verteilung wird oft beutzt zur Modellierung von Wartezeiten oder Lebensdauern
+
+\vspace{6pt}
+\noindent Dichte
+\begin{equation*}
+f(x)=\begin{cases}
+\lambda e^{-\lambda x} &, X\geq0\\
+0 &, x<0\\
+\end{cases}
+\end{equation*}
+\newline VF
+\begin{equation*}
+F(x)=\int_{-\infty}^{x}f(u)du = \begin{cases}
+\int_{0}^{x}\lambda e^{-\lambda u}du = -e^{-\lambda u} &, x\geq0\\
+0 &, x<0\\
+\end{cases}
+\end{equation*}
+
+\begin{tikzpicture}
+    \draw[step=1cm,gray,very thin] (0,0) grid (4,4);
+    \draw[thick,->] (0,0) -- (4,0) node[anchor=north west] {x};
+    \draw[thick,->] (1,0) -- (1,4) node[anchor=south east] {};
+    \draw(+1pt,3) -- (1-1pt,3) node[anchor=east] {$1$};
+    \draw[red,thick] (0,0) -- (1,0);
+    \draw[red,thick] (1,0) -- (3,3);;
+\end{tikzpicture}
+
 \end{document}
-
-
