@@ -36,12 +36,15 @@
 
 \newcommand\eqsigmaadd{\overset{\mathclap{\scriptscriptstyle (\sigma\text{-Add.})}}{=}}
 \newcommand\eqthreetwog{\overset{\mathclap{\scriptscriptstyle (Satz 3.2(g))}}{=}}
+\newcommand\sfotwoa{\overset{\mathclap{\scriptscriptstyle Satz \hspace{2pt} 4.2 \hspace{2pt} (a)}}{=}}
 \newcommand\impthreetwog{\overset{\mathclap{\scriptscriptstyle (Satz 3.2(g))}}{\Rightarrow}}
 \newcommand\sfothree{\overset{\mathclap{\scriptscriptstyle Satz \hspace{2pt} 4.3 \hspace{2pt} mit \hspace{2pt} g(x)=x^2}}{=}}
 \newcommand\sfofoa{\overset{\mathclap{\scriptscriptstyle Satz \hspace{2pt} 4.4 \hspace{2pt} (a)}}{=}}
 \newcommand\bspfoonc{\overset{\mathclap{\scriptscriptstyle Bsp. \hspace{2pt} 4.1 \hspace{2pt} (c)}}{=}}
 \newcommand\sfofoe{\overset{\mathclap{\scriptscriptstyle Satz \hspace{2pt} 4.4 \hspace{2pt} (e)}}{=}}
 \newcommand\sfofoc{\overset{\mathclap{\scriptscriptstyle Satz \hspace{2pt} 4.4 \hspace{2pt} (c)}}{=}}
+\newcommand\jekmo{\underset{\mathclap{\scriptscriptstyle j=k-1}}{=}}
+
 
 
 
@@ -1043,18 +1046,155 @@ F(x)=\int_{-\infty}^{x}f(u)du = \begin{cases}
     \draw[step=1cm,gray,very thin] (0,0) grid (4,4);
     \draw[thick,->] (0,0) -- (4,0) node[anchor=north west] {x};
     \draw[thick,->] (1,0) -- (1,4) node[anchor=south east] {};
-    \draw(+1pt,3) -- (1-1pt,3) node[anchor=east] {$1$};
+    \draw(1+1pt,3) -- (1-1pt,3) node[anchor=east] {$1$};
     \draw[red,thick] (0,0) -- (1,0);
-    \draw[red,thick] (1,0) -- (3,3);;
+    \draw[red,thick] (1,0) arc (180:95:3cm);
 \end{tikzpicture}
 
+\[\int_{-\infty}^{\infty}f(u)du=\int_{0}^{\infty}\lambda e^{-\lambda x}=[e^{-\lambda x}]_0^\infty=1\]
 
+\subsubsection{Normalverteilung} (oder Gaußverteilung)
+\[N(\mu, \sigma^2),\mu\in\mathbb{R},\sigma^2>0\]
+\[f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}exp(-\frac{(x-\mu)^2}{2\sigma^2})\hspace{25pt}, x\in\mathbb{R}\]
+\newline$\mu$: Mittelwert/Erwartungswert einer Zufallsvariable mit obiger Dichte
+\newline$\sigma^2$: Varianz einer Zufallsvariable mit obiger Dichten
+\newline $N(0,1)$ heißt \textit{Standardnormalverteilung}
 
-%fehlt!!!
+\vspace{4pt}
+\noindent Dichte 
+\[\phi(X)=\frac{1}{\sqrt{2\pi}}\cdot exp(-\frac{X^2}{2})\]
+\newline VF
+\[\Phi(X)=\int_{-\infty}^{x}\phi(u)du\]
+\newline $\rightarrow$ Abgeschlossen bezüglich affiner Transformation.
+\newline Beweis:
+\newline Sei X$\sim N(0,1)$, seien $a,b\in\mathbb{R},b\neq0$
+\newline $\Rightarrow Y:=a+bX\sim N(a+b\mu,b^2\sigma^2)$
+\newline Nachweis für den Fall $b>0$ (Fall $b<0$ analog)
+\newline $P(Y\geq y) =$ VF der transformierten Zufallszahl
+\begin{align*}
+P(Y\geq y) &= P(a+bX\leq y) = P(X\leq\frac{y-a}{b})\\
+&= F_x(\frac{y-a}{b}), y\in\mathbb{R}\\
+\Rightarrow \frac{d}{dy}P(Y\geq y) &= F_x'(\frac{y-a}{b})\frac{1}{b} = f(\frac{y-a}{b})\frac{1}{b}\\
+&= \frac{1}{\sqrt{2\pi\sigma^2}}\cdot exp(-\frac{(\frac{y-a}{b}-\mu)^2}{2\sigma^2})\frac{1}{b}\\
+&= \frac{1}{\sqrt{2\pi(b\sigma)^2}}\cdot exp(-\frac{[y-(a+b\cdot\mu)]^2}{2(b\sigma)^2})
+\end{align*}
+\noindent $\Rightarrow$ Dichte von Y ist die Dichte der $N(a+b\mu,b^2\sigma^2)$-Verteilung
+\newline Insb. gilt:
+\newline Falls $X\sim N(0,1)$, dann $a+bX\sim N(a,b^2)$
+\newline Falls $X\sim N(\mu,\sigma^2)$, dann $\frac{X-\mu}{\sigma}\sim N(0,1)$ 
+\newline\indent und $P(X\leq x) = P(\frac{X-\mu}{\sigma}\leq\frac{x-\mu}{\sigma}) = \Phi(\frac{x-\mu}{\sigma})$, $x\in\mathbb{R}$
+\newline Dabei ist $\Phi$ die VF einer $N(0,1)$-verteilten ZV. $\frac{X-\mu}{\sigma}$ ist die zu X gehörende standardisierte ZV.
+Durch Standardisierung kann eine beliebige Normverteilung als Standard-Normalverteilung dargestellt werden.
 
+\section{Erwartungswert, Varianz und Kovarianz}
+
+\subsection{Erwartungswert einer ZV}
+Sei X eine diskrete ZV, und seien $x_1,x_2,\dots$ die verschiedenen möglichen Werte von f, sei f die W'funktion von X. 
+\newline Der \textit{Erwartungswert} (EW) von X wird definiert durch
+\[E(X)=\sum_{i}x_if(x_i)=\sum_{i}x_iP(X=x_i) \hspace{15pt}(\text{gewichtetes Mittel der }x_i)\]
 
 \vspace{6pt}
-\noindent\textbf{Satz 4.3:} Seien X eine ZV und $g:\mathbb{R}\rightarrow\mathbb{R}$ eine Funktion. Dann gilt
+\noindent Hier wird angenommen, dass $E(X)=\sum_{i}x_if(x_i)<\infty$ ist. Dies stellt sicher, dass der rruwer wohldefiniert ist und nicht von der Summationsrechenfolge abhängt. 
+F+r nichtnegative diskrete ZV X ist $E(X)$ immer nichtdefiniert, aber eventuell $=\infty$.
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 4.1:}
+\begin{itemize}
+\item[(a)] Sei $\Omega=\{1,\dots,n\}, P(A)=\frac{|A|}{|\Omega|}$ für $A\subset\Omega$ und $a_\omega=X(\omega),\omega\in\mathbb{R}=4$.
+\newline \begin{align*}
+\Rightarrow E(X) &= \sum_{x\in\{a_1,\dots,a_n\}}xP(X=x)\\
+&= \sum_{x\in\{a_1,\dots,a_n\}}x\frac{|\{\omega\in\Omega:X(\omega)=x\}|}{n}\\
+&= \frac{1}{n}\cdot\sum_{i=1}^{n}a_i\\
+\end{align*}
+\item[(b)] Ist $P(X=a)=1, a\in\mathbb{R}$, dann ist 
+\[E(X)=a\cdot P(X=a)=a\]
+\item[(c)] Sei $X\sim Ber(p), X=I_A, P(A)=p$
+\begin{align*}
+\Rightarrow E(X)=E(I_A) &= 0\cdot P(I_A=0)+1\cdot P(I_A=1)\\
+&= 1\cdot P(A)=p\\
+\end{align*}
+\item[(d)] Für $X\sim Poi(\lambda)$ gilt: 
+\begin{align*}
+E(X) &= \sum_{k=0}^{\infty}kP(X=k) = \sum_{k=1}^{\infty}k\frac{\lambda^k}{k!}e^{-\lambda}\\
+&= e^{-\lambda}\sum_{k=1}^{\infty}\frac{\lambda^k}{(k-1)!} \hspace{10pt} \jekmo \hspace{10pt} e^{-\lambda}\sum_{j=0}^{\infty}\frac{\lambda^{j+1}}{j!}\\
+&= e^{-\lambda}\lambda\underbrace{\sum_{j=0}^{\infty}\frac{j^\lambda}{j!}}_{= e^\lambda}=\lambda
+\end{align*}
+\end{itemize}
+
+\subsubsection{Satz 4.1:}
+Ist X eine ZV, die nur Werte in $\{0,1,2,\dots\}$ annimt, dann gilt
+\[E(X)=\sum_{n=0}^{\infty}P(X>n)=\sum_{n=1}^{\infty}P(X\geq n)\]
+
+\noindent\textbf{Bew.:}
+\begin{align*}
+E(X) = \sum_{n=1}^{\infty}nP(X=n) =& P(X=1)\\
+& + P(X=2) + P(X=2)\\
+& +P(X=3) + P(X=3) + P(X=3)\\
+& + \dots\\
+=& P(X>0) + P(X>1) + P(X>2) + \dots\\
+=& P(X\geq 1) + P(X\geq 2) + P(X\geq 3) + \dots\\
+\end{align*}
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 4.2:} Ist $X\sim$Geo($p$), dann
+\[P(X>n)=(1-p)^n, n=0,1,\dots\]
+und
+\[E(X)=\sum_{n=0}^{\infty}P(X>n)=\sum_{n=0}^{\infty}(1-p)^n=\frac{1}{p}\] 
+
+\vspace{6pt}
+\noindent Sei X eine stetige Zufallsvariable mit Dichte f. Dann ist der Erwartungswert von X definiert durch
+\[E(X)=\int_{-\infty}^{\infty}xf(X)dx\]
+Hier wird angenommenn, dass $\int_{-\infty}^{\infty}xf(X)dx<\infty$ ist. 
+\newline Für nichtnegative stetige ZV X ist $E(X)$ immer wohldefiniert, aber evtl. $\infty$. 
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 4.3:}
+\begin{itemize}
+    \item[(a)] Sei $X\sim$Uni($a,b$)
+    \begin{align*}
+    \Rightarrow E(X) &= \int_{a}^{b}x\frac{1}{b-a}dx = \frac{1}{b-a}\frac{x^2}{2}|_a^b = \frac{1}{b-a}\frac{b^-a^2}{2}\\
+    &= \frac{a+b}{2} \text{Mittelpunkt von }[a,b]
+    \end{align*}
+    \item[(b)] Sei $X\sim$Exp($\lambda$)
+    \begin{align}
+    E(X) &= \int_{0}^{\infty}x\lambda e^{-\lambda x}dx\\
+    &= [-xe^{-\lambda x}]_0^\infty - \int_{0}^{\infty}e^{-\lambda x}\\
+    &= 0 + [-\frac{1}{\lambda}e^{-\lambda x}]_{0}^{\infty}=\frac{1}{\lambda}\\
+    E(X) &= \frac{1}{\lambda}\\
+    \end{align}
+\end{itemize}
+
+\subsubsection{Satz 4.2:}
+Seien $X,Y,X_1,\dots,X_n$ beliebige ZV (diskret oder stetig).
+\begin{itemize}
+    \item[(a)]
+        \begin{align*}
+        E(aX+bY) &= aE(X)+bE(Y) \text{für alle $a,b\in\mathbb{R}$ (Linearität)}\\
+        E(a+bX) &= a+bE(X) \text{für alle $a,b\in\mathbb{R}$}\\
+        E(\sum_{i=1}^{n}a_iX_i)=\sum_{i=1}^{n}a_i\cdot E(X_i)\\
+        \end{align*}
+    \item[(b)] Falls $X_1,\dots,X_n$ unabhängig sind, dann gilt
+        \[E(X_1,\dots,X_n)=E(X_1)\cdot\dots\cdot E(X_n)\]
+    \item[(c)] Falls $X$ eine nichtnegative ZV ist, dann gil
+        \[E(X)\geq0 \text{mit Gleichheit genau dann, wenn } P(X=0)=1\]
+    \item[(d)] Falls $P(X\leq Y)=1$, dann $E(X)\leq E(Y)$ (Monotonie)
+\end{itemize}
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 4.4:}
+\begin{itemize}
+\item[(a)]$X\sim$ Bin($n,p$)
+\newline Benutze Darstellung $X=X_1+\dots+X_n, X_i\sim$ Ber($p$)
+\[\Rightarrow E(X) \hspace{15pt} \sfotwoa \hspace{15pt} E(X_1)+\dots+E(X_n)\]
+\item[(b)] $X\sim$ N($\rho,\sigma^2$)
+\newline $X$ hat dieselbe Verteilung wie $\mu + \sigma Y$, wobei $Y\sim$ N($0,1$)
+\begin{align*}
+\Rightarrow E(X) &= E(\mu + \sigma Y) = \mu + \sigma E(Y)\\
+E(Y) &= \int_{-\infty}^{\infty}y\frac{1}{\sqrt{2\pi}}e^{-\frac{y^2}{2}}dy=0, \text{ da } ye^{-\frac{y^2}{2}} \text{ ungerade.}\\
+\end{align*}
+\end{itemize}
+
+\subsubsection{Satz 4.3:} Seien X eine ZV und $g:\mathbb{R}\rightarrow\mathbb{R}$ eine Funktion. Dann gilt
 \begin{equation*}
 E[g(X)] = \begin{cases}
 \sum_{i}^{}g(X_i)P(X=x_i) & \text{falls X diskret ist mit möglichen Werten  } x_1,x_2,\dots\\
@@ -1075,16 +1215,15 @@ u(x)=-x & v(x) = e^{-\frac{-x^2}{2}}\\
 u'(x)=-1 & v'(x) = -xe^{-\frac{-x^2}{2}}\\
 \end{align*}
 
-\vspace{6pt}
-\noindent\textbf{Varianz}
-\newline Die \textit{Varianz} einer ZV X ist det. durch 
+\subsection{Varianz einer ZV}
+Die \textit{Varianz} einer ZV X ist det. durch 
 \[Var(x):=E[(X-E(X))^2]\]
 und die \textit{Standardabweichung} von X ist 
 \[\sigma(X):=\sqrt{Var(X)}\]
 $Var(X)$ und $\sigma(X)$ sind Maße für die Streuung der Verteilung von X um E(X)
 
-\vspace{6pt}
-\noindent\textbf{Satz 4.4:} Sei X eine ZV. Dann gilt
+\subsubsection{Satz 4.4:} 
+Sei X eine ZV. Dann gilt
 \begin{itemize}
 \item[(a)] $Var(X)=E(X^2)-[E(X)]^2$
 \item[(b)] Ist P(X=a)=1 für eine Konstante $A\in\mathbb{R}$, dann $Var(X)=c$.
@@ -1120,8 +1259,8 @@ Var(X) &= E[(X-E(X))^2]\\
 \newline $\Rightarrow$ X hat dieselbe Verteilung wie $\mu+\sigma Y$
 \newline $\Rightarrow Var(X)= Var(\mu + \sigma Y) \hspace{12pt}\sfofoc\hspace{12pt} \sigma^2Var(Y) = \sigma^2(E(Y^2)-(E(Y))^2)=\sigma^2$
 
-§4(C) Kovarianz und Korrelation
-\newline Sind X und Y ZV mit EW $\mu_x=E(X),\mu_y=E(Y)\in\mathbb{R}$.
+\subsection{Kovarianz und Korrelation}
+Sind X und Y ZV mit EW $\mu_x=E(X),\mu_y=E(Y)\in\mathbb{R}$.
 \newline Die \textit{Kovarianz} von X und Y ist def. durch
 \[Cov(X,Y):=E[(X-\mu_x)(Y-\mu_y)]\]
 \newline Der \textit{Korrelationskoeffizient} von X und Y ist def. durch 
@@ -1150,8 +1289,7 @@ $\Rightarrow$ Sind X und Y unabhängig, dann sind X und Y unkorreliert. Umkehrun
 \newline $P(X=0|Y=0)=1 \neq P(X=0)$
 \newline X und Y sind nicht unabhängig.
 
-\vspace{6pt}
-\noindent\textbf{Satz 4.5:} Seien $X,Y,X_1,\dots,X_n,Y_1,\dots,Y_n$ ZV
+\subsubsection{Satz 4.5:} Seien $X,Y,X_1,\dots,X_n,Y_1,\dots,Y_n$ ZV
 \begin{itemize}
 \item[(a)] $Cov(X,Y) = Cov(Y,X)$
 \item[(b)] $Cov(X,X) = Var(X)$
