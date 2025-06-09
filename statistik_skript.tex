@@ -1291,11 +1291,12 @@ $\Rightarrow$ Sind X und Y unabhängig, dann sind X und Y unkorreliert. Umkehrun
 
 \subsubsection{Satz 4.5:} Seien $X,Y,X_1,\dots,X_n,Y_1,\dots,Y_n$ ZV
 \begin{itemize}
-\item[(a)] $Cov(X,Y) = Cov(Y,X)$
-\item[(b)] $Cov(X,X) = Var(X)$
-\item[(c)] $Cov(a+bX,c+dY) = bdCov(X,Y)$ für alle $a,b,c,d\in\mathbb{R}$
-\item[(d)] $Cov(\sum_{i=1}^{m}a_iX_i,\sum_{j=1}^{n}b_jY_j) = \sum_{i=1}^{m}\sum_{j=1}^{n}a_ib_jCov(X_i,Y_j)$ für alle $a_1,\dots,a_m,b_1,\dots,b_n\in\mathbb{R}$
-\item[(e)] $Var(\sum_{i=1}^{m}X_i)=\sum_{i=1}^{m}Var(X_i)+2\sum_{i\neq j}Cov(X_i,X_j)$
+    \item[(a)] $Cov(X,Y) = Cov(Y,X)$
+    \item[(b)] $Cov(X,X) = Var(X)$
+    \item[(c)] $Cov(a+bX,c+dY) = bdCov(X,Y)$ für alle $a,b,c,d\in\mathbb{R}$
+    \item[(d)] $Cov(\sum_{i=1}^{m}a_iX_i,\sum_{j=1}^{n}b_jY_j) = \sum_{i=1}^{m}\sum_{j=1}^{n}a_ib_jCov(X_i,Y_j)$ 
+        $\hspace{1pt} \forall a_1,\dots,a_m,b_1,\dots,b_n\in\mathbb{R}$
+    \item[(e)] $Var(\sum_{i=1}^{m}X_i)=\sum_{i=1}^{m}Var(X_i)+2\sum_{i\neq j}Cov(X_i,X_j)$
 \end{itemize} 
 
 \noindent\textbf{Bew. (c):}
@@ -1305,5 +1306,79 @@ $\Rightarrow$ Sind X und Y unabhängig, dann sind X und Y unkorreliert. Umkehrun
 =&E[b(X-E(X))d(Y-E(Y))]\\
 =&b\cdot d\cdot Cov(X,Y)\\
 \end{align*}
+
+\noindent\textbf{Bew. (d):}
+\begin{align*}
+    & Cov(\sum_{i}a_iX_i,\sum_{j}b_jX_j)\\
+    =& E(\sum_{i}\sum_{j}a_ib_iX_iY_i) - (\sum_{i}a_iE(X_i))(\sum_{j}b_jE(Y_j))\\
+    =& \sum_{i}\sum_{j}a_ib_jE(X_iY_j) - a_ib_jE(X_i)E(Y_j)\\
+    \underset{\mathclap{\scriptscriptstyle (a)}}{=}& \sum_{i}\sum_{j}a_ib_jCov(X_i,Y_j)\\
+\end{align*}
+
+\noindent\textbf{Bew. (e):}
+\begin{align*}
+    Var(\sum_{i=1}^{m}X_i) \underset{\mathclap{\scriptscriptstyle (b)}}{=}& Cov(\sum_{i=1}^{m}X_i,\sum_{j=1}^{m}X_j)\\
+    \underset{\mathclap{\scriptscriptstyle (d)}}{=}& \sum_{j=1}^{m} Cov(X_i,X_j) \\
+    =& \sum_{i=1}^{m} Cov(X_i,X,i) + \sum_{i\neq j} Cov(X_i,X_j) \\
+    =& \sum_{i=1}^{m} Var(X_i)+2\sum_{i<j}Cov(X_i,X_j)\\
+\end{align*}
+
+\subsection{Ungleichungen}
+
+\subsubsection{Satz 4.6: Markov-Ungleichung}
+Sei X eine nicht-negative ZV. Dann gilt 
+\[P(X\geq t) \leq \frac{E(X)}{t} \hspace{20pt}\forall t>0\]
+
+\noindent\textbf{Beweis:}
+Definiere eine Bernoulli-ZV durch
+\begin{align*}
+Y(\omega) &:= \begin{cases}
+1 \text{ falls } X(\omega) \geq t\\
+0 \text{ falls } X(\omega) < t\\
+\end{cases}\\
+\Rightarrow Y(\omega) &\leq \frac{X(\omega)}{t} \hspace{10pt}\forall \omega\\
+\end{align*}
+\begin{itemize}
+\item Für $X(\omega) < t$ gilt $Y(\omega)=0\leq\frac{X(\omega)}{t}$
+\item Für $X(\omega) \geq t$ gilt $Y(\omega)=1\leq\frac{X(\omega)}{t}$
+\end{itemize}
+\[\Rightarrow P(X\geq t) \hspace{5pt}\underset{\mathclap{\scriptscriptstyle Bsp. 4.1}}{=}\hspace{5pt} E(Y) \hspace{5pt}\underset{\mathclap{\scriptscriptstyle Satz 4.2(d)}}{\leq}\hspace{5pt} E(\frac{X}{t}) \hspace{10pt}\underset{\mathclap{\scriptscriptstyle Satz 4.2(a)}}{=}\hspace{10pt} \frac{1}{t}E(X)\]
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 4.8:}
+Sei $X\sim$Poi($1$) und $t>1$.
+\[P(X\geq t) \hspace{5pt}\underset{\mathclap{\scriptscriptstyle Markov}}{\leq}\hspace{5pt} \frac{E(X)}{t} \hspace{10pt}\underset{\mathclap{\scriptscriptstyle Bsp. 4.1(d)}}{=}\hspace{10pt} \frac{1}{t}\]
+Die obere Schranke lässt sich verbessern. Für jedes $u>0$ gilt 
+\[\underset{\mathclap{\scriptscriptstyle (monotone\hspace{3pt}Transf.)}}{P(X\geq t)} = P(e^{uX}\geq e^{ut}) \hspace{5pt}\underset{\mathclap{\scriptscriptstyle Markov}}{\leq}\hspace{5pt} = \frac{E(e^{uX})}{e^{ut}}\]
+und 
+\[E(e^{uX}) \hspace{5pt}\underset{\mathclap{\scriptscriptstyle Satz 4.3}}{=}\hspace{5pt} e^{-1}\sum_{k=0}^{\infty}\frac{(e^u)^k}{k!} = e^{-1}\text{exp}(e^u-1)\]
+\[\Rightarrow P(X\geq t)\leq \text{exp}(e^u-1-ut) \hspace{25pt}\forall u>0\]
+$e^u-1-ut$ wird minimal für $u=log(t)$ und für dieses u ergibt sich 
+\[P(X\geq t)\leq\text{exp}(t-1-t\cdot log(t)) = (\frac{e}{t}^t\cdot e^{-1})\]
+z.B. $P(X\geq5)\leq 0,01747, P(X\geq10)\leq8,103\cdot10^{-7}$
+
+\subsubsection{Satz 4.7: Tschebyscheff-Ungleichung}
+Sei X eine ZV, $\mu:=E(X)\in\mathbb{R}$ und $\sigma^2:=Var(X).$ Dann gilt
+\[P(|X-\mu|\geq t)\leq \frac{\sigma^2}{t^2} \forall t>0\]
+Ist  $\sigma=\sqrt{Var(X)}\in (0,\infty)$, dann gilt
+\[P(|X-\mu|\geq k\sigma)\leq\frac{1}{k^2}\forall k>0\]
+
+\noindent\textbf{Beweis:}
+\[P(|X-\mu|\geq t) = P((>-\mu)^2\geq t^2) \hspace{5pt}\underset{\mathclap{\scriptscriptstyle Markov}}{\leq}\hspace{5pt} \frac{E[(X-\mu)^2]}{t^2} = \frac{\sigma^2}{t^2}\]
+Mit $t=k\sigma$ ergibt sich die andere Behauptung.
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 4.9:}
+n = 10.000 Münzwürfe
+X = Anzahl der Würfe, in denen Zahl fällt $\sim$Bin($n,\frac{1}{2}$)
+\begin{align*}
+P(4.750 < X < 5.250) =& P(|X-5000|<250)\\
+=& 1 - P(|X-E(X)|\geq 250) \\
+\underset{\mathclap{\scriptscriptstyle Tschebyscheff}}{\geq}& 1- \frac{Var(X)}{250^2} = 1-\frac{\frac{n}{4}}{250^2} \\
+=& 0,96 \\
+\end{align*}
+
+
+
 
 \end{document}
