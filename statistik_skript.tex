@@ -1378,6 +1378,124 @@ P(4.750 < X < 5.250) =& P(|X-5000|<250)\\
 =& 0,96 \\
 \end{align*}
 
+\vspace{6pt}
+\noindent\textbf{Bsp. 4.10:}
+Sei x eine ZV, $mu=E(X), \sigma=\sqrt{Var(X)} \in (0,\infty)$
+\newline Für den $k\sigma$-Bereich von X 
+\[\mu - k\sigma, \mu + k\sigma\]
+gilt
+\[P(X\notin[\mu - k\sigma, \mu + k\sigma])\leq\frac{1}{k^2}\]
+und
+\[P(X\in[\mu - k\sigma, \mu + k\sigma])\geq 1-\frac{1}{k^2}, k=2,3,\dots\]
+W'keit, dass eine ZV ... das k-fache ihrer Standardabweichung von ihrem EW ... mind. $1-\frac{1}{k^2}$.
+
+\vspace{6pt}
+\noindent Dies gilt für große Verteilungen .
+\newline Zum Vergleich: Ist $X\sim$N($\mu,\sigma^2$), dann
+\begin{align*}
+P(X\in[\mu - k\sigma, \mu + k\sigma]) &= P(-k \leq \frac{X-\mu}{\sigma} \leq k) = \Phi(k) - \Phi(-k)\\
+\text{(Tutorium A40) }&= 2\Phi(k)-1\\
+&\approx \begin{cases}
+0,6827, k=1\\
+0,9545, k=2\\
+0,9973, k=3\\
+\end{cases}
+\end{align*}
+
+\section{Grenzwertsätze}
+Seien $X_1,X_2,\dots$ unabhängige, identisch verteilte ZV, $\mu=E(X_1), \sigma = \sqrt{Var(X_1)}$
+\newline Untersuche das Verhalten des Stichprobenmittel:
+\[\bar{X_n} := \frac{X_1+\dots+X_n}{n}\]
+Für große N 
+\[E(\bar{X}_n) = \frac{1}{n}(E(X_1)+\dots+E(X_n))=\mu\]
+\[Var(\bar{X}_n) = \frac{1}{n^2}(Var(X_1)+\dots+Var(X_n)) = \frac{\sigma^2}{n} \rightarrow 0 (\text{für }n\rightarrow\infty)\]
+Intuitiv, Verteilung von $\bar{X}_n$ konzentriert sich für $n\rightarrow\infty$ in der Nähe von $\mu$, 
+\[\bar{X}_n \text{ konvergiert gegen }\mu \text{ (Gesetz d. großen Zahlen)}\]
+Zentraler Grenzwertsatz beschreibt die Verteilung der standardisierten ZV 
+\[\sqrt{n}\frac{\bar{X_n}-\mu}{\sigma}\]
+für $n\rightarrow\infty$
+
+\subsection{Gesetz der großen Zahlen}
+Wichtiger Spezialfall: $X_n\overset{\mathclap{\scriptscriptstyle P}}{\rightarrow} a$ für eine Konstante $a$. 
+\newline d.h. 
+\[\underset{\mathclap{\scriptscriptstyle n\rightarrow\infty}}{\text{lim}} P(a-\epsilon < X_n < a + \epsilon) = 1 \forall\epsilon>0\]
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 5.1} 
+Seien $U_1,U_2,\dots$ unabhängig, $U_i\sim U_{ni}(0,1)$
+\[X_n := min\{U_1,\dots,U_n\}, n\in\mathbb{N}\]
+Beh. $X_n\overset{\mathclap{\scriptscriptstyle P}}{\rightarrow} 0$
+\newline Für jedes $\varepsilon>0$ gilt 
+\begin{equation*}
+P(|X_n-0|\geq \varepsilon) = P(X_n\geq\varepsilon)=\begin{cases}
+(1-\varepsilon)^2, &\text{falls } 0<\varepsilon<1\\
+0, &\text{falls } \varepsilon\geq1\\
+\end{cases}
+\end{equation*}
+
+\vspace{6pt}
+\noindent\textbf{Def. 5.1:} Eine Folge von ZV $X_1,X_2,\dots$ \textit{konvergiert stochastisch} gegen eine ZV X, geschrieben $X_n\overset{\mathclap{\scriptscriptstyle P}}{\rightarrow} X$, falls für jedes $\epsilon>0$
+\[\underset{\mathclap{\scriptscriptstyle n\rightarrow\infty}}{\text{lim}} P(|X_n - X| \geq \varepsilon) = 0\]
+gilt. 
+
+\subsubsection{Satz 5.1: Schwaches Gesetz der großen Zahlen}
+Seien $X_1,X_2,\dots$ unabhängige, identisch verteilte ZV mit $\mu=E(X_1)$ und $Var(X_1)<\infty$. 
+\newline Dann folgt
+\[\frac{1}{n}\sum_{i=1}^{n}X_i\overset{\mathclap{\scriptscriptstyle P}}{\rightarrow}\mu\]
+\textbf{Bew.:}
+\[E(\frac{1}{n}\sum_{i=1}^{n}X_i)=\frac{1}{n}\sum_{i=1}^{n}E(X_i)=\mu\]
+Für jedes $\varepsilon>0$ gilt 
+\begin{align*}
+P(|\frac{1}{n}\sum_{i=1}^{n}X_i-\mu|\geq\varepsilon)\\
+\text{(Tschebyscheff)} &\leq \frac{Var(\frac{1}{n}\sum_{i=1}^{n}X_i)}{\varepsilon^2} = \underset{\mathclap{\scriptscriptstyle \text{Satz 4.4}}}{=}\frac{1}{n^2\varepsilon^2} = \sum_{i=1}^{n}Var(X_i)\\
+&= \frac{Var(X_1)}{n\varepsilon^2} \rightarrow 0 (n\rightarrow\infty)\\
+\end{align*}
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 5.2:}
+Seien $X_1,X_2,\dots$ unabhängig, identisch verteilte ZV, $X_i\sim$Ber($p$)
+\newline$\rightarrow E(X_1) = p$ und nach Satz 5.1 gilt
+\[\frac{1}{n}\sum_{i=1}^{n}X_i\overset{\mathclap{\scriptscriptstyle P}}{\rightarrow}p\]
+relative Häufigkeit der Erfolge in den ersten n Experimenten $\rightarrow$ Erfolgsw'keit
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 5.3:}
+Seien $X_1,X_2,\dots$ unabhängige, identisch verteilte ZV, sei $A\in\mathbb{R}$
+Wende Satz 5.1 an auf Bernoulli-ZV
+\begin{equation*}
+Y_i(\omega)=\begin{cases}
+1 &\text{falls }X_i(\omega)\in a \\
+0 &\text{falls }X_i(\omega)\notin a\\
+\end{cases}
+\end{equation*}
+\[\Rightarrow \frac{1}{n}\sum_{i=1}^{n}Y_i\overset{\mathclap{\scriptscriptstyle P}}{\rightarrow} E(Y_1) = P(X_1\in A)\]
+relative Häufigkeit von \glqq$X_i\in A$\grqq in den ersten n Experimenten $\rightarrow$ W'keit von \glqq$X_i\in A$\grqq
+
+\subsubsection{Satz 5.2: Starkes Gesetz der großen Zahlen}
+Seien $X_1,X_2,\dots$ unabhängige, identisch verteilte ZV mit $\mu\in E(X_1)\in\mathbb{R}$. Dann gilt
+\[P(\{\omega\in\Omega:\overset{\mathclap{\scriptscriptstyle \text{lim}}}{n\rightarrow\infty}\frac{1}{n}(X_1(\omega)+\dots+X_n(\omega)=\mu)\})=1\]
+
+\subsection{Zentraler Grenzwertsatz}
+\subsubsection{Satz 5.2 Zentraler Grenzwertsatz ZGS}
+Seien $X_1,X_2,\dots$ unabhängige, identisch verteilte ZV. Sei
+\begin{align*}
+\sigma^2 &= Var(X_1)\in(0,\infty)\\
+\mu &= E(X_1)\\ 
+S_n &= X_1+\dots+X_n\\
+S_n* &= \frac{S_n-E(S_n)}{\sqrt{Var(S_n)}} = \frac{S_n-n\mu}{\sqrt{n\sigma^2}}
+\end{align*}
+
+
+
+Dann gilt 
+\[\overset{\mathclap{\scriptscriptstyle \text{lim}}}{n\rightarrow\infty}P(a\leq S_n*\leq b) = \frac{1}{\sqrt{2\pi}}\int_{a}^{b}e^\frac{-x^2}{2}dx = \Phi(b) - \Phi(a), -\infty\leq a\leq b\leq\infty\]
+wobei $Phi(y)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{y}e^\frac{-x^2}{2}dx = $ VF einer N(0,1)-verteilten ZV ($\Phi(-\infty)=0,\Phi(\infty)=1$)
+
+\vspace{6pt}
+\noindent\textbf{Bem. 5.1:}
+Unter den Voraussetzungen von Satz 5.3 gilt auch 
+\[\overset{\mathclap{\scriptscriptstyle \text{lim}}}{n\rightarrow\infty} P(a<S_n*<b)=\overset{\mathclap{\scriptscriptstyle \text{lim}}}{n\rightarrow\infty}P(a<S_n*\leq b) = \overset{\mathclap{\scriptscriptstyle \text{lim}}}{n\rightarrow\infty}P(a\leq S_n*<b) = \Phi(b) - \Phi(a)\]
+für $-\infty\leq a<b\leq\infty$.
 
 
 
