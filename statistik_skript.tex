@@ -1497,6 +1497,46 @@ Unter den Voraussetzungen von Satz 5.3 gilt auch
 \[\overset{\mathclap{\scriptscriptstyle \text{lim}}}{n\rightarrow\infty} P(a<S_n*<b)=\overset{\mathclap{\scriptscriptstyle \text{lim}}}{n\rightarrow\infty}P(a<S_n*\leq b) = \overset{\mathclap{\scriptscriptstyle \text{lim}}}{n\rightarrow\infty}P(a\leq S_n*<b) = \Phi(b) - \Phi(a)\]
 für $-\infty\leq a<b\leq\infty$.
 
+\vspace{6pt}
+\noindent ZGS kann oft benutzt werden, um W'keiten, die mit Summen von unabhängigen, identisch verteilten ZV gebildet werden, zu approximieren. 
 
+\vspace{6pt}
+\noindent\textbf{Bsp. 5.4:} Normalverteilungsapproximation der Binomialverteilung
+Seien $X_1,X_2,\dots$ unabhängig $\sim$Ber($p$), $0<p<1$
+$\rightarrow S_n = X_1 + \dots + X_n \sim$Bin($n,p$), $E(S_n)=np$, $Var(S_n)=np(1-p)$
+\[\rightarrow P(a\leq S_n^*\leq b)  =P(a\leq \frac{S_n-np}{\sqrt{np(1-p)}}\leq b) \approx \Phi(b) - \Phi(a)\]
+Faustregel: Approximation ist anwendbar falls $np\geq5$ und $n(1-p)\geq5$. 
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 5.5:}
+Sei X$\sim$Bin($200,\frac{1}{20}$), $P(5\leq X\leq15)=$?
+\begin{itemize}
+\item[(a)] Exakte Lösung 
+\[P(5\leq X\leq15)=\sum_{k=5}^{15}\binom{200}{k}(\frac{1}{20})^k(\frac{19}{20})^{200-k} = 0,9292\]
+\item[(b)] Normalverteilungsapproximation
+$X=S_n\sim$Bin($n,p$) mit $n=200$ und $p=\frac{1}{20}$
+\newline Approximation $P(5\leq S_n\leq15)$ wie in Bsp. 5.4
+\newline Bringe gesuchte W'keit auf die Form 
+\[P(a\leq \frac{S_n-np}{\sqrt{np(1-p)}}\leq b) \]
+wobei $np=10$ und $\sqrt{np(1-p)}=\sqrt{\frac{19}{2}}=3,0822$
+\begin{align*}
+P(5\leq S_n\leq15) &= P(\frac{5-np}{\sqrt{np(1-p)}}\leq\frac{S_n-np}{\sqrt{np(1-p)}}\leq\frac{15-np}{\sqrt{np(1-p)}})\\
+&= P(-1,6222\leq\frac{S_n-np}{\sqrt{np(1-p)}}\leq1,6222)\\
+(\text{Über ZGS}) &\approx \Phi(1,6222)-\Phi(-1,6222)\\
+& \hspace{30pt} \Phi(-x) = 1-\Phi(x) \text{ für alle } x\in\mathbb{R} \text{ s. Tutorium A40}\\
+&\Rightarrow P(5\leq S_n\leq15) \approx 2\Phi(1,6222) - 1 \approx 2\cdot0,9474-1\approx 0,8948\\
+\end{align*}
+\end{itemize}
+
+\part{Schließende Statistik}
+
+\section{Parameterschätzung}
+Sei X eine ZV mit (ganz oder teilweise) unbekannter Verteilung (die Verteilung der Grundgesamtheit). 
+\newline Gesucht: Information über die Verteilung von X. 
+\newline Betrachte dazu \textit{(Zufalls-)Stichprobe} vom Umfang n: $(X_1,\dots,X_n)$ D.h. Stichprobenvariablen $(X_1,\dots,X_n)$ sind unabhängige ZV, die jeweils dieselbe Verteilung haben wie X. 
+\newline $n$ unabhängige Wiederholungen von X. 
+\newline Konstruiere mit Hilfe der $X_1,\dots,X_n$ Schätzer für interesierenden Parameter der Verteilung, z.B. $\vartheta=E(X)$, oder $\vartheta=Var(X)$, oder, falls bekannt ist, dass $X\sim$Exp($\lambda$), aber $\lambda$ unbekannt, $\vartheta=\lambda$. 
+
+\subsection{Erwartungstreue und Konsistenz}
 
 \end{document}
