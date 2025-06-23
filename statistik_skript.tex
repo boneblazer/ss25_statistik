@@ -1538,5 +1538,118 @@ Sei X eine ZV mit (ganz oder teilweise) unbekannter Verteilung (die Verteilung d
 \newline Konstruiere mit Hilfe der $X_1,\dots,X_n$ Schätzer für interesierenden Parameter der Verteilung, z.B. $\vartheta=E(X)$, oder $\vartheta=Var(X)$, oder, falls bekannt ist, dass $X\sim$Exp($\lambda$), aber $\lambda$ unbekannt, $\vartheta=\lambda$. 
 
 \subsection{Erwartungstreue und Konsistenz}
+Sei ($X_1,\dots,X_n$) eine Stichprobe. Sei $T_\mathbb{R}^n\rightarrow\mathbb{R}^p$. Dann heißt die Zufallsvariable
+\[T(X_1,\dots,X_n)\]
+eine \textit{Stichprobenfunktion} oder \textit{Statistik}. Wird $T$ zum Schätzen eines Parameters $\vartheta\in\mathbb{R}^p$ verwendet, so nennt man $T(X_1,\dots,X_n)$ eine \textit{Schätzfunktion} für (das Schätzen von) $\vartheta$. 
+\newline In Anwendungen: Erhebe Stichprobe, d.h. Beobachtungswerte $x_1,\dots,X_n\in\mathbb{R} =$ Realisationen von $X_1,\dots,X_n$. 
+\newline $T(X_1,\dots,X_n)$ ist ein Schätz\underline{wert} (keine ZV) für $\vartheta$. 
+\newline Im Folgenden gelte für 
+\begin{align*}
+\Theta &= \text{Menge der möglichen Parameterwerte}\\
+\Theta &\in \mathbb{R} \text{eindimensional}
+\end{align*}
+
+\vspace{6pt}
+\noindent\textbf{Def. 6.1:} 
+Eine Schätzfunktion $\hat{\vartheta} = T(X_1,\dots,X_n)$ für $\vartheta\in\Theta\in\mathbb{R}$ heißt \textit{erwartungstreu} (e-treu) für $\vartheta$, falls
+\[E(\hat{\vartheta})=\vartheta \hspace{15pt}\forall\vartheta\in\Theta\]
+Der \textit{Bias} oder die \textit{Verzerrung} von $\hat{\vartheta}$ ist definiert durch
+\[\text{Bias}(\hat{\vartheta})=E(\hat{\vartheta})-\vartheta\]
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 6.1:} Schätze $\mu=E(X)$. 
+\newline Für das Stichprobenmittel
+\[\bar{X}_n=\frac{1}{n}\sum_{i=1}^{n}X_i\]
+gilt
+\[E(\bar{X}_n)=\frac{1}{n}\sum_{i=1}^{n}E(X_i)=\mu\]
+So ist $X_n$ e-treue Schätzfunktion für $\mu=E(X)$. 
+
+$\bar{X}_n$ hat unter allen e-treuen linearen Schätzfunktionen also Schätzfunktionen der Form
+\[T(X_1,\dots,X_n)=\sum_{i=1}^{n}c_iX_i\hspace{15pt}\text{ mit }c_1,\dots,c_n\in\mathbb{R}\]
+die kleinste Varianz, denn
+\newline Sei $T(X_1,\dots,X_n)=\sum_{i=1}^{n}c_iX_i$ e-treu für $\mu$
+\[\Rightarrow \mu=E[T(X_1,\dots,X_n)]=\sum_{i=1}^{n}c_iE(X_i)=\mu\sum_{i=1}^{n}c_i, \text{ also }\sum_{i=1}^{n}c_i=1\]
+und mit $\sigma^2=Var(X_i)$ gilt 
+\begin{align*}
+Var(T(X_1,\dots,X_n)) &= \sum_{i=1}^{n}c_i^2Var(X_i)\\
+&= \sigma^2\sum_{i=1}^{n}(c_i-\frac{1}{n}+\frac{1}{n})^2\\
+&= \sigma^2[\sum_{i=1}^{n}(c_i-\frac{1}{n})^2+\frac{2}{n}\sum_{i=1}^{n}(c_i-\frac{1}{n})^2+\frac{n}{n^2}]\\
+&\geq \frac{\sigma^2}{n}=Var(\bar{X}_n)\\
+\end{align*}
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 6.2:} Schätze $\sigma^2=Var(X)$
+\[\tilde{S^2}=\frac{1}{n}\sum_{i=1}^{n}(X_i-\bar{X}_n)^2\]
+Ist $\tilde{S^2}$ e-treu für $\sigma^2$?
+\begin{align*}
+E(\tilde{S^2}) &= \frac{1}{n}E[(\sum_{i=1}^{n}X_i^2)-2\bar{X}_n(\sum_{i=1}^{n}X_i)+n\bar{X}_n^2]\\
+&= \frac{1}{n}(\sum_{i=1}^{n}E(X_i^2)-nE(\bar{X}_n^2))
+\end{align*}
+\begin{align*}
+E(X_i^2) &= Var(X_i)+[E(X_i)]^2=\sigma^2+\mu^2\\
+E(\bar{X}_n^2) &= Var(\bar{X}_n)+[E(\bar{X}_n)]^2=\frac{\sigma^2}{n}+\mu^2\\
+\end{align*}
+
+\[\Rightarrow E(\tilde{S^2})=\frac{1}{n}(n(\sigma^2+\mu^2)-n(\frac{\sigma^2}{n}+\mu^2))=\frac{n-1}{n}\sigma^2\]
+
+\noindent $\tilde{S^2}$ ist nicht e-treu für $\sigma^2$.
+\[Bias(\tilde{S^2})=E(\tilde{S^2})-\sigma^2=-\frac{1}{n}\sigma^2\]
+
+\noindent Aber: Die \textit{Stichprobenvarianz}
+\[S_n^2=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar{X}_n)^2, n\geq2\]
+ist e-treu für $\sigma^2=Var(X)$, denn $E(S_n^2)=E(\frac{n}{n-1}S^2)=\sigma^2$
+
+\vspace{6pt}
+\noindent\textbf{Def. 6.2:} Die \textit{mittlere quadratische Abweichung} (oder der mittlere quadratische Fehler) einer Schätzfunktion $\hat{\vartheta}$ für $\vartheta$ ist definiert durch
+\[MSE(\hat{\vartheta}):=E[(\hat{\vartheta}-\theta)^2]\]
+
+\vspace{6pt}
+\noindent\textbf{Bem. 6.1:}
+\begin{itemize}
+\item[(a)] Ist $\hat{\vartheta}$ e-treu für $\theta$, dann gilt 
+\[MSE(\hat{\vartheta}):=E[(\hat{vartheta}-\theta)^2]=Var(\hat{\vartheta})\]
+\noindent In Bsp. 6.1
+\[MSE(\bar{X}_n)=Var(\bar{X}_n)=\frac{\sigma^2}{n}\]
+\item[(b)] Für bel. Schätzfunktionen $\hat{\vartheta}$ gilt
+\[MSE(\hat{\vartheta})=[Bias(\hat{\vartheta})]^2+Var(\hat{\vartheta})\]
+\noindent denn mit $t:=E(\hat{\vartheta})$ gilt
+\begin{align*}
+MSE(\hat{\vartheta}) &= E[(\hat{vartheta}-t+t-\theta)^2]\\
+&= E[(\hat{\vartheta})^2]+2(t-\vartheta)E(\vartheta-t)+(t-\vartheta)^2\\
+&= Var(\hat{\vartheta}) + [Bias(\hat{\vartheta})]^2\\
+\end{align*}
+\end{itemize}
+
+\subsubsection{Konsistenz}
+Seien $X_1,X_2,\dots$ unabh. identisch verteilte ZV. 
+\newline Betrachte Folge von Schätzfunktionen $f\rightarrow$ der Schätzer eines Parameters:
+\[T_1(X_1),T_2(X_1,X_2),T_2(X_1,X_2,X_3)\]
+Für jedes n sei $T_n(X_1,\dots,X_n)$ Schätzfunktion basierend auf Stichprobe vom Umfang n. 
+\newline Wird für $n\rightarrow\infty$ Schätzgenauigkeit bel. gut?
+
+\vspace{6pt}
+\noindent\textbf{Def. 6.3:}
+Eine Folge von Schätzfunktionen für $\vartheta$:
+\[T_1(X_1),T_2(X_1,X_2),\]
+heißt \textit{konsistent} für den Parameter $\vartheta$, falls 
+\[T_n(X_1,\dots,X_n) \overset{\mathclap{\scriptscriptstyle P}}{\rightarrow}\vartheta \hspace{15pt} (n\rightarrow\infty)\]
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 6.3:}
+Seien $X_1,X_2,\dots$ unabh., identisch verteilte ZV mit unbekanntem EW $\mu=E(X_i)$. 
+Nach dem schwachen Gesetz der großen Zahlen gilt 
+\[\bar{X}_n \overset{\mathclap{\scriptscriptstyle P}}{\rightarrow} \mu\]
+Also ist die Folge $(\bar{X}_n)_{n=1}^\infty$ konsistent für $\mu$. 
+
+\vspace{6pt}
+\noindent\textbf{Bem. 6.2:} Seien $X_1,X_2,\dots$ unabh., identisch verteilte ZV, 
+\[\hat{\vartheta}_n=T_n(X_1,\dots,X_n)\]
+und $MSE(\hat{\vartheta}_n)\rightarrow0 \forall n\rightarrow\infty$. 
+\newline $\Rightarrow$ Für jedes $\varepsilon>0$ gilt 
+\[P(|\hat{\vartheta}_n-\vartheta|\geq\varepsilon)=P(|\hat{\vartheta}_n-\vartheta|^2\geq\varepsilon^2)\underset{\mathclap{\scriptscriptstyle Markov}}{\leq}\frac{E()}{\varepsilon^2}=\frac{MSE(\hat{\vartheta})}{\varepsilon^2}\rightarrow0\]
+\[\Rightarrow\hat{\vartheta}_n\overset{\mathclap{\scriptscriptstyle P}}{\rightarrow}\vartheta \text{ und } (\hat{\vartheta}_n)_{n=1}^\infty \text{ ist konsistent.}\]
+\noindent Mit Bem. 6.1(b) folgt:
+\newline Falls $Bias(\hat{\vartheta}_n)\rightarrow0$ und $Var(\hat{\vartheta}_n)\rightarrow0$, dann ist $(\hat{\vartheta}_n)_{n=1}^\infty$ konsistent. 
+
 
 \end{document}
