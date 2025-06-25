@@ -1651,5 +1651,50 @@ und $MSE(\hat{\vartheta}_n)\rightarrow0 \forall n\rightarrow\infty$.
 \noindent Mit Bem. 6.1(b) folgt:
 \newline Falls $Bias(\hat{\vartheta}_n)\rightarrow0$ und $Var(\hat{\vartheta}_n)\rightarrow0$, dann ist $(\hat{\vartheta}_n)_{n=1}^\infty$ konsistent. 
 
+\subsection{Die Maximum-Likelihood-Methode}
+Methode zur Konstruktion von Schätzfunktionen für unbekannen Parameter einer Verteilung.
+Sei 
+\[\Theta = \text{ Menge der möglichen Parameterwerte.}\]
+Sei X eine ZV, deren Verteilung nur bis auf einen Parameter $\vartheta$ bekannt ist. D.h. die Verteilung von X wird beschrieben durch W-Maß $P_\vartheta$, das von $\vartheta$ abhängt. 
+\newline $X_1,\dots,X_n$ seien unabh. ZV, die jeweils dieselbe Verteilung wie X haben. Schätze $\vartheta$ mit Hilfe von ($X_1,\dots,X_n$)
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 6.4:}
+Es sei bekannt, dass X eine Poisson-Verteilung hat, 
+$X\sim$Poi($\lambda$), aber $\lambda$ unbekannt ist. 
+\newline Schätze $\vartheta=\lambda$
+
+\vspace{4pt}
+\noindent\underline{Diskreter Fall:}
+\newline Idee: Für Beobachtungswerte $x_1,\dots,x_n$ der Zufallsstichprobe, 
+wähle als Schätzwert $\hat{\vartheta}=\hat{\vartheta}(x_1,\dots,x_n)$ dasjenige $\vartheta\in\Theta$, für das die W'keit, $x_1,\dots,x_n$ zu beobachten, maximal wird. (ML-Methode)
+\newline Sei X eine diskrete ZV mit W'keitsfunktion $f(x|\vartheta)$, d.h. $P_\vartheta(X=x)=f(x|\vartheta)$.
+\newline Dann gilt
+\begin{align*}
+P_\vartheta(X_1=x_1,\dots,X_n=x_n) &= P_\vartheta(X_1=x_1)\cdot\dots\cdot P_\vartheta(X_n=x_n)\\
+&= f(x_1|\vartheta)\cdot\dots\cdot f(x_|\vartheta) \text{ für alle } x_1,\dots,X_n
+\end{align*} 
+Die Funktion
+\[L(\vartheta)=L(\vartheta|x_1,\dots,x_n)=\prod_{i=1}^{n}f(x_i|\vartheta)\]
+heißt \textit{Likelihood-Funktion}. Sie wird als Funktion von $\vartheta$ aufgefasst bei geg. Werten $x_1,\dots,x_n$.
+
+\vspace{6pt}
+\noindent\textbf{Def. 6.4:}
+Für Stichprobenrealisation ($x_1,\dots,x_n$) sei $\hat{\vartheta}=\hat{\vartheta}(x_1,\dots,x_n)\in\Theta$ so, dass
+\[(*)\hspace{15pt} L(\hat{\vartheta}|x_1,\dots,x_n)=\underset{\mathclap{\scriptscriptstyle \vartheta\in\Theta}}{\text{max}}L(\vartheta|x_1,\dots,x_n)\]
+Dann ist 
+\begin{itemize}
+\item[] $\hat{\vartheta}(x_1,\dots,x_n)$ ein \textit{ML-Schätzwert} für $\vartheta$
+\item[] $\hat{\vartheta}(X_1,\dots,X_n)$ eine \textit{ML-Schätzfunktion} für $\vartheta$. 
+\end{itemize}
+
+\vspace{6pt}
+\noindent\textbf{Bem. 6.3}
+\begin{itemize}
+\item[(a)] Im Maximierungsproblem (*) sind $x_1,\dots,x_n$ fest und es wird bzgl. $\vartheta$ maximiert.
+\item[(b)] Evtl. existiert kein $\hat{\vartheta}\in\Theta$ oder es existieren mehrere $\hat{\vartheta}\in\Theta$, für die (*) gilt. 
+\end{itemize}
+
+
 
 \end{document}
