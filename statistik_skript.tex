@@ -1684,7 +1684,7 @@ Für Stichprobenrealisation ($x_1,\dots,x_n$) sei $\hat{\vartheta}=\hat{\varthet
 \[(*)\hspace{15pt} L(\hat{\vartheta}|x_1,\dots,x_n)=\underset{\mathclap{\scriptscriptstyle \vartheta\in\Theta}}{\text{max}}L(\vartheta|x_1,\dots,x_n)\]
 Dann ist 
 \begin{itemize}
-\item[] $\hat{\vartheta}(x_1,\dots,x_n)$ ein \textit{ML-Schätzwert} für $\vartheta$
+\item[] $\hat{\vartheta}(x_1,\dots,x_n)$ ein \textit{ML-Schätzwert} für $\vartheta$.
 \item[] $\hat{\vartheta}(X_1,\dots,X_n)$ eine \textit{ML-Schätzfunktion} für $\vartheta$. 
 \end{itemize}
 
@@ -1693,8 +1693,75 @@ Dann ist
 \begin{itemize}
 \item[(a)] Im Maximierungsproblem (*) sind $x_1,\dots,x_n$ fest und es wird bzgl. $\vartheta$ maximiert.
 \item[(b)] Evtl. existiert kein $\hat{\vartheta}\in\Theta$ oder es existieren mehrere $\hat{\vartheta}\in\Theta$, für die (*) gilt. 
+\item[(c)] Ist $ L(\hat{\vartheta}|x_1,\dots,x_n)$ differenzierbar nach $\vartheta$, so findet man $\hat{\vartheta}$ oft durch Differenzieren.
+Ist $\vartheta\in\Theta\in\mathbb{R}$, betrachte
+\[\frac{\partial}{\partial\vartheta}L(\hat{\vartheta}|x_1,\dots,x_n)=0\]
+Beachte: Maximum kann am Rand liegen $\Theta = [a,b]$
+\newline Ist $\vartheta=(\vartheta_1,\vartheta_2)\in\Theta\in\mathbb{R}^2$, betrachte die Gleichungen
+\[\frac{\partial}{\partial\vartheta_1}L(\vartheta_1,\vartheta_2|x_1,\dots,x_n)=0, \frac{\partial}{\partial\vartheta_2}L(\vartheta_1,\vartheta_2|x_1,\dots,x_n)=0\]
+\item[(d)] Oft einfacher: 
+\newline Maximierung der Log-Likelihood-Funktion
+\[l(\vartheta)=l(\vartheta|x_1,\dots,x_n)=ln L(\vartheta|x_1,\dots,x_n) \hspace{15pt}\text{(wobei gilt $\frac{d}{dx}\ln x = \frac{1}{x}$)}\] 
+$l(\vartheta)$ hat an derselben Stelle $\hat{\vartheta}$ ein Maximum wie L($\vartheta$), da log streng monoton wachsend ist gilt
+\[L(\hat{\vartheta})\geq L(\vartheta) \Leftrightarrow l(\hat{\vartheta})\geq l(\vartheta) \forall\vartheta\]
+\[\frac{\partial}{\partial\vartheta}\log L(\vartheta|x_1,\dots,x_n)=\frac{\partial}{\partial\vartheta}\log\prod_{i=1}^{n}f(x_i|\vartheta)=\frac{\partial}{\partial\vartheta}\sum_{i=1}^{n}\log f(x_i|\vartheta)\]
+\item[(e)] Ist $\hat{\vartheta}$ eine ML-Schätzfunktion für $\vartheta$ und ist $g(\vartheta)$ eine Funktion von $\vartheta$, dann ist $g(\hat{\vartheta})$ eine ML-Schätzfunktion für $g(\vartheta)$. 
 \end{itemize}
 
+\vspace{6pt}
+\noindent\textbf{Bsp. 6.5} 
+Sei X$\sim$Poi($\lambda$), $\lambda$ unbekannt, $\lambda\geq0$. Bestimt ML-Schätzfunktion für $\lambda$. (für Stichprobe vom Umfang n)
+\[f(x|\lambda)=P_\lambda(X=x)=\frac{\lambda^x}{x!}e^{-\lambda}, \hspace{25pt}x=0,1,...\]
+\[\text{X}\sim\text{Poi}(0) \text{ bedeutet } P_0(X=x)=\begin{cases}
+1, &x=0\\
+0, &x>0\\
+\end{cases}\]
+1. Bestimme Likelihood-Funktion
+\begin{align*}
+    L(\lambda|x_1,\dots,x_n) &= f(x_1|\lambda)\cdot\dots\cdot f(x_n|\lambda)\\
+    &= \frac{\lambda^{x_1}}{x_1!}e^{-\lambda}\cdot\dots\cdot\frac{\lambda^{x_n}}{x_n!}e^{-\lambda}\\
+    &= \frac{1}{x_1!\cdot\dots\cdot x_n!}\lambda^{x_1+\dots+x_n}e^{-n\lambda}, \hspace{10pt}\text{ wobei }x_1,\dots,x_n\in\mathbb{N}_0\\
+\end{align*}
+2. Maximiere Likelihood-Funktion bzgl. $\lambda$
+\newline Betrachte Log-Likelihood-Funktion
+\begin{align*}
+    \log L(\lambda|x_1,\dots,x_n) &= \log\frac{1}{x_1!\cdot\dots\cdot x_n!}+(x_1+\dots+x_n)\log\lambda-n\lambda\\
+    \frac{\partial}{\partial\lambda}\log L(\lambda|x_1,\dots,x_n) &= (x_1+\dots+x_n)\frac{1}{\lambda}-n \overset{\mathclap{\scriptscriptstyle !}}{=}0\\
+    &\Leftrightarrow \lambda=\frac{x_1+\dots+x_n}{n}\\
+    \frac{\partial^2}{\partial\lambda^2}\log L(\lambda|x_1,\dots,x_n) &= -(x_1+\dots+x_n)\frac{1}{\lambda^2}<0 \text{ sofern } x_1+\dots+x_n>0\\
+\end{align*}
+$\Rightarrow$ An der Stelle $\lambda=\frac{x_1+\dots+x_n}{n}$ wird $L(\lambda|x_1,\dots,x_n)$ maximal, d.h. 
+\newline Falls $x_1+\dots+x_n=0$, dann $X_1=\dots=x_n=0$
+\[\Rightarrow L(\lambda|x_1,\dots,x_n)=1\cdot\lambda^0\cdot e^{-n\lambda}=e^{-n\lambda}, \text{ wird maximal für }\lambda=0=\frac{x_1+\dots+x_n}{n}\]
+\newline $\Rightarrow$ in jedem Fall ist ML-Schätzwert geg. durch
+\[\hat{\lambda}(x_1,\dots,x_n)=\frac{x_1+\dots+x_n}{n}\hspace{35pt}\text{ ML-Schätzfuntkion ist }\frac{x_1+\dots+x_n}{n}\]
+
+\noindent\underline{Stetiger Fall}
+\newline ZV X habe Dichte $f(x|\vartheta)$ mit unbekanntem Parameter, $\vartheta\in\Theta$. 
+\newline Likelihood-Funktion ist dann definiert durch 
+\[L(\vartheta)=L(\vartheta|x_1,\dots,x_n)=\prod_{i=1}^{n}f(x_i|\vartheta)\]
+und die Definition von ML-Schätzwert und ML-Schätzfunktion ist analog zu Def. 6.4. Auch Bem. 6.3 gilt analog. 
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 6.6:}
+X$\sim$N($\mu,\sigma^2$). Zunächst sei $\sigma^2>0$ bekannt. 
+\newline Bestimme ML-Schätfunktion für $\mu$.
+\newline Dichte
+\[f(x|\mu)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp(-\frac{(x-\mu)^2}{2\sigma^2})\] 
+Likelihood-Funktion
+\begin{equation*}
+L(\mu|x_1,\dots,x_n)=f(x_1|\mu)\dots f(x_n|\mu)=(\frac{1}{\sqrt{2\pi\sigma^2}})^2\exp(-\sum_{i=1}^{n}-\frac{(x-\mu)^2}{2\sigma^2})\\
+\Rightarrow \log L(\mu|x_1,\dots,x_n)=n\log\frac{1}{\sqrt{2\pi\sigma^2}}-\frac{1}{2\sigma^2}\sum_{i=1}^{n}(x-\mu)^2\\
+\end{equation*}
+Maximiere bzgl. $\mu$
+\begin{equation*}
+\frac{\partial}{\partial\mu}\log L(\mu|x_1,\dots,x_n)=\frac{1}{2\sigma^2}\sum_{i=1}^{n}2(x-\mu)=\frac{1}{\sigma^2}[(\sum_{i=1}^{n}x_i)-n\mu] \overset{\mathclap{\scriptscriptstyle !}}{=}0\\
+\Leftrightarrow \mu=\frac{1}{n}\sum_{i=1}^{n}x_i\\
+\end{equation*}
+und 
+\[\frac{\partial^2}{\partial\mu^2}\log L(\mu|x_1,\dots,x_n)=-n<0\]
+\[\Rightarrow L(\mu|x_1,\dots,x_n) \text{ wird maximal für }\mu=\frac{1}{n}\sum_{i=1}^{n}x_i\]
+$\Rightarrow$ ML-Schätzfunktion für $\mu$ ist $\frac{1}{n}\sum_{i=1}^{n}X_i=\bar{X_n}$ sowohl wenn $\sigma^2$ bekannt ist als auch wenn $\sigma^2$ unbekannt ist. 
 
 
 \end{document}
