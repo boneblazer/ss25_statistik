@@ -1763,5 +1763,53 @@ und
 \[\Rightarrow L(\mu|x_1,\dots,x_n) \text{ wird maximal für }\mu=\frac{1}{n}\sum_{i=1}^{n}x_i\]
 $\Rightarrow$ ML-Schätzfunktion für $\mu$ ist $\frac{1}{n}\sum_{i=1}^{n}X_i=\bar{X_n}$ sowohl wenn $\sigma^2$ bekannt ist als auch wenn $\sigma^2$ unbekannt ist. 
 
+\noindent ML-schätzfunktion für $\sigma^2$ ist 
+\begin{itemize}
+\item[] $\frac{1}{n}\sum_{i=1}^{n}(X_i-\mu)^2$ falls $\mu$ bekannt
+\item[] $\frac{1}{n}\sum_{i=1}^{n}(X_i-\bar{X_n})^2$ falls unbekannt
+\end{itemize}
+
+ML-Schätzfunktion für $\sigma$
+\begin{itemize}
+\item[] $\sqrt{\frac{1}{n}\sum_{i=1}^{n}(X_i-\bar{X_n})^2}$ falls $\mu$ unbekannt
+\item[] 
+\end{itemize}
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 6.7:} X$\sim$Uni(0,$\vartheta$), $\vartheta>0$ unbekannt
+\newline Dichte
+\begin{equation*}
+f(x|\vartheta)=\begin{cases}
+\frac{1}{\vartheta}, & x\in[0,\vartheta]\\
+0, & \text{sonst}\\
+\end{cases}
+\end{equation*}
+Likelihood-funktion für $x_1,\dots,x_n\geq0$
+\[L(\vartheta|x_1,\dots,x_n)=f(x_1|\vartheta)\cdot\dots\cdot f(x_n|\vartheta)=\begin{cases}
+(\frac{1}{\vartheta})^n, & x\in[0,\vartheta] \forall i=1,\dots,n\\
+0, & \text{sonst}\\
+\end{cases}\]
+\[=\begin{cases}
+(\frac{1}{\vartheta})^n, & \text{falls } \vartheta\geq\max{x_1,\dots,x_n}\\
+0, & \text{sonst}
+\end{cases}\]
+
+\section{Konfidenzintervalle}
+\noindent Ziel: Gebe (möglichst kurzes) Intervall an, das interessierenden unbekannten Parameter mit hoher W'keit enthält. 
+\newline Sei X ZV, (X_1,\dots,X_n) Stichprobe, $\vartheta$ unbekannter Parameter der Verteilung von X, $\vartheta\in\Theta\in\mathbb{R}$
+
+Sei $\alpha\in(0,1)$ eine vorgegebene Irrtumsw'keit. 
+\newline Bestimme Stichprobenfunktionen
+\[A=\alpha(X_1,\dots,X_n) \text{ und } B=\beta(X_1,\dots,X_n)\]
+so dass 
+\[\alpha(x_1,\dots,x_n)\leq\beta(x_1,\dots,x_n)\text{ für alle }x_1,\dots,x_n\]
+und so dass das Zufallsintervall $[A,B]$ den Parameter $\vartheta$ mit W'keit $1-\alpha$ enthält, d.h.
+\[P(A\leq\vartheta\leq B)=1-\alpha, \hspace{20pt}\vartheta\in\Theta\]
+
+Das Zufallsintervall [A,B] heißt dann ein $(1-\alpha)$-\textit{Konfidenzintervall} für $\vartheta$ oder ein Konfidenzintervall für $\vartheta$ zum \textit{Konfidenzniveau} $1-\alpha$.
+\newline $1-\alpha$ ist die \textit{Überdeckungsw'keit} von [A,B].
+
+\noindent Ein Konfidenzintervall [A,B] heißt \textit{symmetrisch,} falls 
+\[P(A>\vartheta) = P(B<\vartheta)\]
 
 \end{document}
