@@ -163,7 +163,7 @@ $A\backslash B = A\cap B^c = \{1,3,5\}\cap\{4,5,6\}=\{1,3\}$ & Augenzahl ist nic
 \begin{itemize}
     \item Kommutativgesetze: $A\cup B = B\cup A$, $A\cap B = B\cap A$
     \item Assoziativgesetze: $A\cup(B\cup C)=(A\cup B)\cup C$; $A\cap(B\cap C)=(A\cap B)\cap C$
-    \item Distributivgesetze: $A\cup(B\cap C) = (A\cap B) \cup (A\cap C); (A\cap B)\cup C = (A\cup C)\cap (B\cup C)$
+    \item Distributivgesetze: $A\cap(B\cup C) = (A\cap B) \cup (A\cap C); (A\cap B)\cup C = (A\cup C)\cap (B\cup C)$
     \item Komplement: $(A^c)^c = A$
     \item De Morgansche Regeln: $(A\cup B)^c = A^c\cap B^c, (A\cap B)^c = A^c\cup B^c$
 \end{itemize}
@@ -204,27 +204,28 @@ Eine für alle Ereignisse $A\subset\Omega$ definierte reelwertige Funktion P hei
 (i)-(iii) heißen \textit{Axiome der Wahrscheinlichkeitsrechnung} oder \textit{Kolmogorov-Axiome}.
 
 \vspace{6pt}
-\noindent\textbf{Bsp. 1.5:} Zweimaliges Werfen eines Würfels.
-\newline $\Omega = \{(i,j):1\leq i\leq6,1\leq j\leq6\}$
-\newline Für $A\subset\Omega$ sei $P(A)=\frac{|A|}{|\Omega|}=\frac{|A|}{36}$, wobei $|A|$ = Anzahl der Elemente von A. Dann ist P ein W-Maß, denn P ist reelwertig
-\newline (i) $P(A) \geq0$ für alle $A\subset\Omega$
-\newline (ii) $P(\Omega)=\frac{|\Omega|}{|\Omega|}=1$
-\newline (iii) Sind $A_1,\dots,A_n$ paarweise disjunkte Teilmengen von $\Omega$, so ist $|\bigcup_{i=1}^{n}A_i| = \sum_{i_1}^{n}|A_n|$, 
-also $P(\bigcup_{i=1}^{n}A_i) = \frac{|\bigcup_{i=1}^{n}A_i|}{|\Omega|} = \frac{\sum_{i_1}^{n}|A_n|}{|\Omega|} = \sum_{i=1}^{n}\frac{|A_i|}{|\Omega|} = \sum_{i=1}^{n}P(A_i)$.
+\noindent\textbf{Bsp. 1.5:} Zweimaliges Werfen eines Würfels, $\Omega = \{(i,j):1\leq i\leq6,1\leq j\leq6\}$
+\newline Für $A\subset\Omega$ sei \[P(A)=\frac{|A|}{|\Omega|}=\frac{|A|}{36},\] wobei $|A|$ = Anzahl der Elemente von A. Dann ist P ein W-Maß, denn P ist reelwertig
+\begin{itemize} 
+    \item[(i)] $P(A) \geq0$ für alle $A\subset\Omega$
+    \item[(ii)] $P(\Omega)=\frac{|\Omega|}{|\Omega|}=1$
+    \item[(iii)] Sind $A_1,\dots,A_n$ paarweise disjunkte Teilmengen von $\Omega$, so ist \[|\bigcup_{i=1}^{n}A_i| = \sum_{i_1}^{n}|A_n|,\] 
+also \[P(\bigcup_{i=1}^{n}A_i) = \frac{|\bigcup_{i=1}^{n}A_i|}{|\Omega|} = \frac{\sum_{i_1}^{n}|A_n|}{|\Omega|} = \sum_{i=1}^{n}\frac{|A_i|}{|\Omega|} = \sum_{i=1}^{n}P(A_i).\]
+\end{itemize}
 
 \vspace{2pt}
 \noindent Für jede unendliche Folge von paarweise disjunkten Teilmengen $A_1,\dots,A_n$ von $\Omega$ existiert ein $N\in\mathbb{N}$, so dass $A_i=\emptyset$ für alle $i>N$, da $\Omega$ endlich ist.
 Es gilt also:
-\newline $\Rightarrow P(\bigcup_{i=1}^{\infty}A_i)=P(\bigcup_{i=1}^{\mathbb{N}}A_i)$
-\newline $\Rightarrow P(\sum_{i=1}^{\mathbb{N}}A_i)=P(\sum_{i=1}^{\infty}A_i)$
-\newline $P(A_i)=P(\emptyset)=\frac{|\emptyset|}{|\Omega|}=0\ \text{für alle}\ i\notin\mathbb{N}$
-\newline Für das Ergebnis A: \glqq Augensumme ist 10\grqq, also $A=\{(4,6),(5,5),(6,4)\}$ ergibt sich $P(A_i)=\frac{|A|}{|Omega|}=\frac{3}{36}=\frac{1}{12}$.
+\[\Rightarrow P(\bigcup_{i=1}^{\infty}A_i)=P(\bigcup_{i=1}^{\mathbb{N}}A_i)\]
+\[\Rightarrow P(\sum_{i=1}^{\mathbb{N}}A_i)=P(\sum_{i=1}^{\infty}A_i)\]
+\[P(A_i)=P(\emptyset)=\frac{|\emptyset|}{|\Omega|}=0\ \text{für alle}\ i\notin\mathbb{N}\]
+\newline Für das Ergebnis A: \glqq Augensumme ist 10\grqq, also $A=\{(4,6),(5,5),(6,4)\}$ ergibt sich \[P(A_i)=\frac{|A|}{|Omega|}=\frac{3}{36}=\frac{1}{12}.\]
 \newline Für das Ergebnis B: \glqq Pasch\grqq, also $B=\{(1,1),(2,2),\dots,(6,6)\}$ ergibt sich 
-\newline$P(A)=\frac{|A|}{|Omega|}=\frac{6}{36}=\frac{1}{6}$.
+\[P(A)=\frac{|A|}{|Omega|}=\frac{6}{36}=\frac{1}{6}.\]
 
 
-\vspace{9pt}
-\noindent Ist allgemeiner $\Omega \neq \emptyset$ eine beliebige endliche Menge und haben alle Ergebnisse 
+\vspace{6pt}
+\noindent\textbf{Laplace-Wahrscheinlichkeit:} Ist allgemeiner $\Omega \neq \emptyset$ eine beliebige endliche Menge und haben alle Ergebnisse 
 (genauer: alle Elementarereignisse) dieselbe Wahrscheinlichkeit, dann folgt aus Axiomen (ii) und (iii)
 
 \[ P(\{w\})=\frac{1}{|\Omega|} \]
@@ -237,24 +238,24 @@ Es gilt also:
 
 \vspace{6pt}
 \noindent\textbf{Bsp. 1.6} Roulette.
-Wenn $\Omega = \{0,1,...,36\} $ ist die W'keit, dass eine ungerade Zahl fällt, $P(\{1,3,5,...,35\})=\frac{|\{1,3,5,...,35\}|}{|\Omega|} = \frac{18}{37}$.
+Wenn $\Omega = \{0,1,...,36\} $ ist die W'keit, dass eine ungerade Zahl fällt, \[P(\{1,3,5,...,35\})=\frac{|\{1,3,5,...,35\}|}{|\Omega|} = \frac{18}{37}.\]
 
-\noindent\ Grundlegendes Prinzip des Zählens ... was heißt das?
+\noindent....Grundlegendes Prinzip des Zählens ... was heißt das?
 
 \vspace{6pt}
 \noindent\textbf{Multiplikationsregel:} Betrachte k Aufgaben. Nimm an, die 
 1. Aufgabe kann auf $n_1$ Arten erledigt werden; danach kann die 
 2. Aufgabe auf $n_2$ Arten erledigt werden;...; danach kann die 
-k-te Aufgabe erledigt werden. (Annahme: $n_1,n_2,...,k$ sind unabhängig.) 
-\newline Die Anzahl der Möglichkeiten, alle k Aufgaben zu erledigen, ist $n_1*n_2*...*k$
+k-te Aufgabe erledigt werden. (Annahme: $n_1,n_2,...,n_k$ sind unabhängig.) 
+\newline Die Anzahl der Möglichkeiten, alle k Aufgaben zu erledigen, ist $n_1*n_2*...*n_k$
 
 \vspace{6pt}
 \noindent\textbf{Bsp. 1.7:} Eine faire Münze wird n-mal geworfen. 
 Ergebnisse sind Folgen von Kopf(K) und Zahl(Z) der Länge n: $\Omega = \{(x_1,...,x_n): x_i\in\{K,Z\}, i = 1,...,n\}$. 
 Verwende Laplace-Wahrscheinlichkeiten: $P(A)=\frac{|A|}{|\Omega|}=\frac{|A|}{2^n}$ für alle $A\in\Omega$.
 Wie groß ist die Wahrscheinlichkeit von $A_j$: \glqq K fällt im j-ten Wurf zum 1. Mal\grqq?
-\[A_j = \{x_1,...,x_n\}: x_i=Z \text{ für } 1 \leq i \leq j-1; x_j=K; x_i \{K,Z\} \text{ für } j+1 \leq i \leq n\]
-\[A_j = 1^{j-1}\cdot 1\cdot 2^{n-j}=2^{n-j} \rightarrow P(A_j) = \frac{|A_j|}{|\Omega|}= \frac{2^{n-j}}{2^{n}}\]
+\[A_j = \{(x_1,...,x_n): x_i=Z \text{ für } 1 \leq i \leq j-1; x_j=K; x_i \{K,Z\} \text{ für } j+1 \leq i \leq n\}\]
+\[|A_j| = 1^{j-1}\cdot 1\cdot 2^{n-j}=2^{n-j} \rightarrow P(A_j) = \frac{|A_j|}{|\Omega|}= \frac{2^{n-j}}{2^{n}}\]
 
 \noindent\textbf{Bsp. 1.8:} Geburtstagsproblem.
 W'keit, dass von k Personen 2 oder mehr am selben Tag im Jahr Geburtstag haben?
