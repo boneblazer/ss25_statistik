@@ -606,7 +606,7 @@ P(X=3) &= P(\emptyset)=0
 \vspace{6pt}
 \noindent Notation: Für ZV X,Y
 \begin{align*}
-\{X=a\} &= \{\omega\in\omega: X(\omega)=a\}, \hspace{10pt}a\in\mathbb{R}\\
+\{X=a\} &= \{\omega\in\Omega: X(\omega)=a\}, \hspace{10pt}a\in\mathbb{R}\\
 \{X < a\} &= \{\omega\in\Omega: X(\omega)<a\} \\
 \{X \in A\} &= \{\omega\in\Omega: X(\omega)\in A\}, \hspace{10pt}A\in\mathbb{R}\\
 \{X\in A, Y\in B\} &= \{\omega\in\Omega: X(\omega)\in A \text{ und } Y(\omega)\in B\}, \hspace{10pt}A,B\in\mathbb{R}\\
@@ -688,7 +688,7 @@ $\Rightarrow P(X_1=b_1)\cdot\dots\cdot P(X_n=b_n)=\frac{1}{6^n}=P(X_1=b_1,\dots,
 \subsection{Verteilungsfunktionen, W'keitsfunktionen und Dichten}
 
 \noindent\textbf{Def. 3.3:} Sei X eine ZV. 
-Die Verteilungsfunktion (VF) $F=F_x$ von x ist definiert durch $F(x)=F_x(x)=P(X\leq x) \hspace{3pt}\forall\hspace{2pt} x\in\mathbb{R}$.
+Die Verteilungsfunktion (VF) $F=F_x$ von x ist definiert durch \[F(x)=F_x(x)=P(X\leq x) \hspace{3pt}\forall\hspace{2pt} x\in\mathbb{R}.\]
 
 \vspace{6pt}
 \noindent\textbf{Bsp. 3.5:} Für X wie in Bsp. \ref{bsp3.1}: $P(X=0)=\frac{1}{4}, P(X=1)=\frac{1}{2}, P(X=2)=\frac{1}{4}$.
@@ -892,9 +892,10 @@ Bsp.: n Münzwürfe
         1, & \text{im i-ten Wurf K}\\
         0, & \text{im i-ten Wurf Z}\\
     \end{cases}
-    S_n = \text{Anzahl der K-Würfe}
 \end{equation*}
-$S_n$ = Anzahl der K-Würfe $\Rightarrow$ Mögliche Werte von $S_n:0,1,\dots,n.$ $P(S_n=k)=?$
+$S_n$ = Anzahl der K-Würfe $\Rightarrow$ Mögliche Werte von $S_n:0,1,\dots,n.$ 
+
+\noindent$P(S_n=k)=?$
 \newline Da $X_1,\dots,X_n$ unabhängig sind, 
 \begin{align*}
    & P(X_1=1,\dots,X_k=1, X_{k+1}=0,\dots,X_n=0)\\
