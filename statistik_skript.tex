@@ -1791,15 +1791,15 @@ X$\sim$N($\mu,\sigma^2$). Zunächst sei $\sigma^2>0$ bekannt.
 \newline Dichte
 \[f(x|\mu)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp(-\frac{(x-\mu)^2}{2\sigma^2})\] 
 Likelihood-Funktion
-\begin{equation*}
-L(\mu|x_1,\dots,x_n)=f(x_1|\mu)\dots f(x_n|\mu)=(\frac{1}{\sqrt{2\pi\sigma^2}})^2\exp(-\sum_{i=1}^{n}-\frac{(x-\mu)^2}{2\sigma^2})\\
-\Rightarrow \log L(\mu|x_1,\dots,x_n)=n\log\frac{1}{\sqrt{2\pi\sigma^2}}-\frac{1}{2\sigma^2}\sum_{i=1}^{n}(x-\mu)^2\\
-\end{equation*}
+\begin{align*}
+L(\mu|x_1,\dots,x_n) &= f(x_1|\mu)\dots f(x_n|\mu)=(\frac{1}{\sqrt{2\pi\sigma^2}})^2\exp(-\sum_{i=1}^{n}-\frac{(x-\mu)^2}{2\sigma^2})\\
+\Rightarrow \log L(\mu|x_1,\dots,x_n) &= n\log\frac{1}{\sqrt{2\pi\sigma^2}}-\frac{1}{2\sigma^2}\sum_{i=1}^{n}(x-\mu)^2\\
+\end{align*}
 Maximiere bzgl. $\mu$
-\begin{equation*}
-\frac{\partial}{\partial\mu}\log L(\mu|x_1,\dots,x_n)=\frac{1}{2\sigma^2}\sum_{i=1}^{n}2(x-\mu)=\frac{1}{\sigma^2}[(\sum_{i=1}^{n}x_i)-n\mu] \overset{\mathclap{\scriptscriptstyle !}}{=}0\\
-\Leftrightarrow \mu=\frac{1}{n}\sum_{i=1}^{n}x_i\\
-\end{equation*}
+\begin{align*}
+\frac{\partial}{\partial\mu}\log L(\mu|x_1,\dots,x_n) &= \frac{1}{2\sigma^2}\sum_{i=1}^{n}2(x-\mu)=\frac{1}{\sigma^2}[(\sum_{i=1}^{n}x_i)-n\mu] \overset{\mathclap{\scriptscriptstyle !}}{=}0\\
+&\Leftrightarrow \mu=\frac{1}{n}\sum_{i=1}^{n}x_i\\
+\end{align*}
 und 
 \[\frac{\partial^2}{\partial\mu^2}\log L(\mu|x_1,\dots,x_n)=-n<0\]
 \[\Rightarrow L(\mu|x_1,\dots,x_n) \text{ wird maximal für }\mu=\frac{1}{n}\sum_{i=1}^{n}x_i\]
@@ -1853,5 +1853,132 @@ Das Zufallsintervall [A,B] heißt dann ein $(1-\alpha)$-\textit{Konfidenzinterva
 
 \noindent Ein Konfidenzintervall [A,B] heißt \textit{symmetrisch,} falls 
 \[P(A>\vartheta) = P(B<\vartheta)\]
+
+\noindent Allgemeiner Ansatz: $\alpha\in(0,1)$
+\[A=a(X_1,\dots,X_n), B=b(X_1,\dots,X_n)\]
+$[A,B]$ ist ein $(1-\alpha)$-Konfidenzintervall für $\vartheta$, falls
+\[P(A\leq\vartheta\leq B)=1-\alpha\]
+symmetrisch, falls
+\[P(A>\vartheta)=P(B<\vartheta)\]
+
+\noindent Die Realisierung des Konfidenzintervalls für Beobachtungswerte $x_1,\dots,x_n$ ist das Schätzintervall
+\[a(x_1,\dots,x_n,), b(x_1,\dots,x_n)\]
+Konstruiere Konfidenzintervall für den unbekannten Parameter $\mu$ einer N($\mu,\sigma^2$)-Verteilung
+\[\text{\underline{Fall A $\sigma^2$ bekannt}}\]
+Benutze folgende Eigenschaften: 
+\begin{itemize}
+\item[(i)] Sind $X_1,\dots,X_n$ unabhängig und jeweils $\sim$N($\mu,\sigma^2$), dann
+\[\bar{X_n}=\frac{x_1+\dots+x_n}{n}\sim\text{N}(\mu,\frac{\sigma^2}{n}) \text{ vgl. Tut. 9, A49 für }n=2\]
+und 
+\[\sqrt{n}\frac{\bar{X_n}-\mu}{\sigma}\sim\text{N}(0,1)\]
+\item[(ii)] Sei $\Phi$ die VF eines N($0,1$)-verteilten ZV
+\newline Dann gibt es für jedes $0<\alpha<1$ eine eindeutige Zahl $x_\alpha\in\mathbb{R}$, so dass $\Phi(x_\alpha)=\alpha$. 
+$x_\alpha$ heißt das $\alpha$\textit{-Quantil} oder $\alpha$\textit{-Fraktil} der N(0,1)-Verteilung. 
+\newline Sei nun $X\sim$N($\mu,\sigma_0^2$) ($\mu$ unbekannt, $\sigma_0^2>0$ bekannt). Sei $(X_1,\dots,X_n$) Stichprobe
+\newline Konstruiere Konfidenzintervall für $\mu$ symmetrisch zur ML-Schätzfunktion $\bar{X_n}$
+\newline Betrachte das Intervall der Form $[\bar{X_n}-\Delta,\bar{X_n}+\Delta]$ und bestimme $\Delta$
+\newline Sei $\alpha\in(0,1)$ vorgegebene
+\begin{align*}
+1-\alpha &= P(\bar{X_n}-\Delta\leq\mu\leq\bar{X_n}+\Delta)\\
+&= P(-\Delta\leq\bar{X_n}-\mu\leq\Delta)\\
+&= P(\frac{-\sqrt{n}}{\sigma_0}\Delta\leq\sqrt{n}\frac{\bar{X_n}-\mu}{\sigma_0}\leq\frac{\sqrt{n}}{\sigma_0}\Delta)\\
+&= \Phi(\frac{\sqrt{n}}{\sigma_0}\Delta)-\Phi(\frac{-\sqrt{n}}{\sigma_0}\Delta)\\
+&= 2\Phi(\frac{\sqrt{n}}{\sigma_0}\Delta)-1\\
+\Leftrightarrow 1-\frac{\alpha}{2} &= \Phi(\frac{\sqrt{n}}{\sigma_0}\Delta)\\
+\end{align*}
+Sei c das $(1-\frac{\alpha}{2})$-Quantil der N(0,1)-Verteilung. Dann muss \[c=\frac{\sqrt{n}}{\sigma_0}\Delta \text{ gelten } \Rightarrow \Delta=\frac{c\sigma_0}{\sqrt{n}}\]
+\[\Rightarrow [\bar{X_n}-\frac{c\sigma_0}{\sqrt{n}}, \bar{X_n}+\frac{c\sigma_0}{\sqrt{n}}]\]
+ist ein Konfidenzintervall für $\mu$ zum Konfidenzniveau $1-\alpha$. 
+\newline Es ist symmetrisch, denn
+\[P(\bar{X_n}-\frac{c\sigma_0}{\sqrt{n}}>\mu)=P(\sqrt{n}\frac{\bar{X_n}-\mu}{\sigma_0}>c)=1-\Phi(c)=\frac{\alpha}{2}\]
+und
+\[P(\bar{X_n}+\frac{c\sigma_0}{\sqrt{n}}<\mu)=P(\sqrt{n}\frac{\bar{X_n}-\mu}{\sigma_0}<-c)=\Phi(-c)=1-\Phi(c)=\frac{\alpha}{2}\]
+\end{itemize}
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 7.1} Sei X$\sim$N($\mu,\sigma^2$) mit $\sigma_0=0,1$. Stichpunkte vom Umfang $n=4$
+Ein Schätzintervall für $\mu$ wird wie folgt berechnet: 
+\begin{itemize}
+\item[] $x_1=5,09$
+\item[] $x_2=5,22$
+\item[] $x_3=5,02$
+\item[] $x_4=5,15$
+\end{itemize}
+
+\begin{itemize}
+\item[1.] Lege Konfidenzniveau $1-\alpha$ fest. 
+\[1-\alpha=0,95\]
+\item[2.] Bestimme ($1-\frac{\alpha}{2}$)-Quantil c für $\Phi(x)$
+\begin{align*}
+\alpha=0,05, 1-\frac{\alpha}{2}=0,975\\
+\Rightarrow c=\Phi^{-1}(0,975)=1,96\\
+\end{align*}
+\item[3.] Berechne $\bar{X_n}=\frac{1}{n}\sum_{i=1}^{n}x_i$
+\[bar{x_n}=5,12\]
+\item[4.] Berechne $\frac{c-\sigma_0}{\sqrt{n}}$.
+\[\frac{1,96-0,1}{\sqrt{4}}=0,098\]
+\item[5.] Gebe Schätzintervall
+\[[\bar{X_n}-\frac{c-\sigma_0}{\sqrt{n}},\bar{X_n}+\frac{c-\sigma_0}{\sqrt{n}}]\]   
+an.
+\[[5,022,5,218]\]
+\end{itemize}
+
+\[\text{\underline{Fall B $\mu$ \text{ und } $\sigma^2$ unbekannt}}\]
+Sei X$\sim$N($\mu,\sigma^2$) $(X_1,\dots,X_n)$ Stichprobe
+\newline Konstruiere KOnfidenzintervall für $\mu$ bei unbekanntem $\sigma$:
+\newline Gehe ähnlich vor wie in Fall A, aber ersetze unbekanntes $\sigma$ durch Stichproben-Standardabweichung 
+\[S_n=\sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar{X_n})^2}\]
+Benutze, dass die Verteilung der ZV
+\[Y=\sqrt{n}=\frac{\bar{X_n}-\mu}{S_n}\]
+eine sogenannte (Student'sche) \textit{t-Verteilung mit n-1 Freiheitsgraden} ist, Y$\sim$t($n-1$).
+\newline Symm. $(1-\alpha)$-Konfidenzintervall für $\mu$ ist dann geg. durch
+\[\bar{X_n}-\frac{aS_n}{\sqrt{n}},\bar{X_n}+\frac{aS_n}{\sqrt{n}}\]
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 7.2:} Verwende Stichprobe aus Bsp. 7.1 und bestimme Schätzintervall für unbekannten Parameter $\mu$ einer N($\mu,\sigma^2$)-Verteilung, wenn auch $\sigma$ unbekannt ist.
+\begin{itemize}
+\item[1.] Lege Konfidenzniveau $1-\alpha$ fest
+\[\text{z.B. }1-\alpha=0,95\]
+\item[2.] Bestimme $(1-\frac{\alpha}{2})$-Quartil $a$ der t($n-1$)-Verteilung
+\[1-\frac{\alpha}{2}=0.975, n-1=3: \text{ Tabelle liefert }a=3.1824\]
+\item[3.] Berechne $\bar{x_n}$ und $S_n=\sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar{X_n})^2}$
+\begin{align*}
+    bar{x_4}&=5.12\\
+    S_4=\sqrt{\frac{1}{3}\sum_{i=1}^{4}(x_i-5.12)^2}
+\end{align*}
+\item[4.] Berechne $\frac{a\cdot s_n}{\sqrt{n}}$
+\[\frac{3.1824\cdot0.08524}{\sqrt{4}}=0.1356\]
+\item[5.] Gebe Schätzintervall
+\[[\bar{X_n}-\frac{a\cdot s_n}{\sqrt{n}},\bar{X_n}+\frac{a\cdot s_n}{\sqrt{n}}]\]   
+an. 
+\[4.9844,5.2556\]
+\end{itemize}
+
+\section{Hypothesentests}
+\subsection{Einleitung, Definitionen}
+\noindent Formuliere Hypothese $H_0$ über unbekannte Verteilung. Verwende Ergebnis einer Stichprobe,
+um zu entscheiden, ob $H_0$ für richtig gehalten wird bzw. abgelehnt wird.
+\vspace{6pt}
+\noindent\textbf{Bsp. 8.1}
+\begin{itemize}
+\item[(a)] Gegeben sei eine Münze, $p=P$(\glqq Zahl\grqq)
+\begin{center}
+Hypothese $H_0: p=0,5$, Münze ist fair
+\newline Alternativ $H_1: p\neq0,5$, Münze ist nicht fair
+\end{center}
+\item[(b)] Sei X$\sim$(N($\mu,\sigma^2$)) mit $\mu$ unbekannt
+\begin{center}
+Hypothese $H_0:\mu\leq5$
+\newline Alternative $H_1:\mu>5$
+\end{center}
+\end{itemize}
+
+\noindent Mögliche Entscheidungen
+\begin{itemize}
+\item[1.] $H_0$ wird abgelehnt (und $H_1$ wird akzeptiert)
+\item[2.] $H_0$ wird nicht abgelehnt
+\end{itemize}
+
+\noindent ein \textit{Test} ist ein Verfahren, das für jedes mögliche Ergebnis der Stichprobe entscheidet, ob $H_0$ abgelehnt wird oder nicht. 
 
 \end{document}
