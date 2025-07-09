@@ -1973,10 +1973,144 @@ Hypothese $H_0:\mu\leq5$
 
 \noindent Mögliche Entscheidungen
 \begin{itemize}
-\item[1.] $H_0$ wird abgelehnt (und $H_1$ wird akzeptiert)
-\item[2.] $H_0$ wird nicht abgelehnt
+\item[]1. $H_0$ wird abgelehnt (und $H_1$ wird akzeptiert)
+\item[]2. $H_0$ wird nicht abgelehnt
+\end{itemize}
+Ein \textit{Test} ist ein Verfahren, das für jedes mögliche Ergebnis der Stichprobe entscheidet, ob $H_0$ abgelehnt wird oder nicht. 
+\newline Mögliche Fehler:
+\begin{itemize}
+    \item[]Fehler 1. Art: $H_0$ wird abgelehnt, obwohl $H_0$ richtig ist.
+    \item[]Fehler 2. Art: $H_1$ wird nicht abgelehnt, obwohl $H_0$ falsch ist.
+\end{itemize}
+Die W'keiten für beide Fehlerarten lassen sich im Allgemeinen nicht gleichzeitig kontrollieren, wenn der Stichprobenumfang gegeben ist. 
+$\Rightarrow$ Man gibt also eine obere Schranke $\alpha \hspace{6pt} (0<\alpha<1)$ für die W'keit eines Fehlers 1. Art vor und minimiert die andere W'keit unter dieser Bedingung.
+\[\alpha \text{ heißt \textit{(Signifikanz-)Niveau}}\]
+\noindent Typischerweise $\alpha=0,05$ oder $\alpha=0,01$.
+\[\text{\underline{Allgemeine Testsituation}}\]
+$\vartheta\in\Theta$ Parameter der Verteilung einer ZV X
+\newline Nullhypothese $H_0$: $\vartheta\in\Theta_0$, wobei $\Theta_0\subset\Theta, \hspace{15pt}\emptyset\neq\Theta_0\neq\Theta$.
+\newline Alternative $H_1$: $\vartheta\in\Theta_1:=\Theta\backslash\Theta_0$
+
+\vspace{6pt}
+\noindent In Bsp. 8.1(a): $\Theta=[0,1]$
+\begin{align*}
+H_0: p=\frac{1}{2} \hspace{20pt}&\Theta_0=\{\frac{1}{2}\}\\
+H_1: p\neq\frac{1}{2} \hspace{20pt}&\Theta_1=\Theta\backslash\Theta_0=[0,\frac{1}{2})\cup(\frac{1}{2},1]\\
+\end{align*}
+$(X_1,\dots,X_n)$ sei Zufallsstichprobe. $X_1,\dots,X_n$ unabhängige ZV, die jeweils dieselbe Verteilung haben wie X. 
+\newline Sei B = Menge aller möglichen Realisationen von $(X_1,\dots,X_n)$, also $B\subset\mathbb{R}^n$
+
+\begin{itemize}
+    \item[]\textbf{Test} $\tau$ wird eindeutig beschrieben durch die Menge $K=K_{\tau}\subset\text{B}$
+    Lehne $H_0$ genau dann ab, wenn $(X_1(\omega),\dots,X_n(\omega))\in K$
+    \newline K heißt \textit{kritischer Bereich} oder \textit{Ablehnungsbereich}
+    \item[] t heißt \textbf{\textit{Test zum Niveau}} $\alpha \hspace{6pt}(0<\alpha<1)$, falls
+    \[P_{\vartheta}(\tau \text{ lehnt } H_0 \text{ ab})=P_{\vartheta}((X_1,\dots,X_n)\in K)\leq\alpha \text{ f"ur alle }\vartheta\in\Theta_0\]
+    Beachte: $\vartheta\in\Theta_0\Rightarrow \hspace{6pt} H_0$ trifft zu
+        \newline $\Rightarrow$ W'keit eines Fehlers 1. Art 
+        \[=P_{\tau}(\vartheta)=P_{\vartheta}(\tau \text{ lehnt } H_0 \text{ ab}) \leq\alpha\]
+    \item[] Die Funktion
+        \[\beta_{\tau}(\vartheta):=P_{\vartheta}(\tau \text{ lehnt } H_0 \text{ ab}), \vartheta\in\Theta\]
+        heißt \textbf{\textit{Gütefunktion}} von $\tau$. 
+        \newline $\tau$ ist Test zum Niveau $\alpha \Leftrightarrow \beta_{\tau}(\vartheta)\leq\alpha$ für alle $\vartheta\in\Theta_0$. 
+        \newline Erwünscht: Unter dieser Bedingung sollte $\beta_2(\vartheta)$ für $\vartheta\in\Theta_1$ möglichst groß sein, da dann W'keit für Fehler 2. Art möglichst klein wird. Denn: 
+        $\vartheta\in\Theta_1\Rightarrow H_0$ falsch 
+        \newline $\Rightarrow$ W'keit für Fehler 2. Art
+        \[P_{\vartheta}(\tau \text{ lehnt } H_0 \text{ nicht ab})=1-\beta_{\tau}(\vartheta)\]
 \end{itemize}
 
-\noindent ein \textit{Test} ist ein Verfahren, das für jedes mögliche Ergebnis der Stichprobe entscheidet, ob $H_0$ abgelehnt wird oder nicht. 
+\subsubsection{Satz 8.1} 
+Seien $\tau_1,\tau_2$ Tests zum Niveau $\alpha$ für $H_0:\vartheta\in\Theta_0$ gegen $H_1:\vartheta\in\Theta_1$ mit kritischen Bereichen $K_1,K_2$. 
+\newline Gilt $K_1\subset K_2$, dann folgt $\beta_{\tau_1}(\vartheta)\leq\beta_{\tau_2}(\vartheta)$ für alle $\vartheta\in\Theta$
+
+\vspace{2pt}
+\noindent\textbf{Beweis:}
+\begin{align*}
+\beta_{\tau_1}(\vartheta) &= P_{\vartheta}(\tau_1 \text{ lehnt } H_0 \text{ ab}) = P_\vartheta((X_1,\dots,X_n)\in K_1)\\
+K_1\subset K_2 &\leq P_\vartheta((X_1,\dots,X_n)\in K_2) = P_{\vartheta}(\tau_2 \text{ lehnt } H_0 \text{ ab}) = \beta_{\tau_2}(\vartheta)\\
+\end{align*}
+\textbf{Fazit:} Wähle bei geg. Niveau den kritischen Bereich möglichst groß.
+
+\subsection{Testen von Hypothesen über den Mittelwert einer N($\mu,\sigma^2$)-Verteilung}
+\noindent\textbf{Fall A: $\mu$ unbekannt, $\sigma^2$ bekannt}
+\newline $X\sim$N($\mu,\sigma^2$), $\hspace{25pt} X_1,\dots,X_n$ unabhängig, jeweils $\sim$N($\mu,\sigma^2$)
+\begin{align*}
+H_0:\mu&\leq\mu_0\\
+H_1:\mu&>\mu_0\\
+\end{align*}
+wobei $\mu_0\in\mathbb{R}$ gegeben ist. Sei $\alpha\in(0,1)$ vorgegebenes Niveau
+
+\vspace{6pt}
+\noindent Idee: Lehne $H_0$ ab, falls $\bar{X_n}$ \glqq zu groß\grqq.
+
+\vspace{6pt}
+\noindent Betrachte kritischen Bereich der Form
+\[K=\{(x_1,\dots,x_n)\in\mathbb{R}^n:\frac{1}{n}(x_1+\dots+x_n)>\gamma\}\]
+Bestimme $\gamma$: 
+\newline Niveaubedingung: (\textit{die W'keit, dass fälschlicherweise abgelehnt wird})
+\[(*) P_{\mu}(\bar{X_n}>\gamma)\leq\alpha \text{ für alle }\mu\leq\mu_0\]
+Wähle K so groß wie möglich, also $\gamma$ so klien wie möglich unter der Bedingung (*) (Satz 8.1)
+
+\vspace{6pt}
+\noindent Vereinfache die Bedingung
+\newline Für jedes $\gamma\in\mathbb{R}$ ist 
+\[P_\mu(\bar{X_n}>\gamma)=P_\mu(\frac{\bar{X_n}-\mu}{\sigma/\sqrt{n}}>\frac{\gamma-\mu}{\sigma/\sqrt{n}})=1-\Phi(\frac{\gamma-\mu}{\sigma/\sqrt{n}})\]
+streng monoton wachsend in $\mu$. 
+
+\vspace{6pt}
+\noindent Daher gilt
+\[(*) \Leftrightarrow (**) P_{\mu_0}(\bar{X_n}>\alpha)\leq \alpha\]
+Das kleinste $\gamma\in\mathbb{R}$, das (**) erfüllt, ist gegeben durch 
+\[P_{\mu_0}(\bar{X_n}>\gamma)=\alpha \hspace{15pt} (\text{da }P_{\mu_0}(\bar{X_n}>\gamma)\text{ monoton fallend in }\gamma)\]
+Auflösen nach $\gamma$:
+\begin{align*}
+\alpha &= P_{\mu_0}(\bar{X_n}>\gamma)=1-\Phi(\frac{\gamma-\mu_0}{\sigma/\sqrt{n}})\\
+&\Leftrightarrow \Phi(\sqrt{n}\frac{\gamma-\mu_0}{\sigma})=1-\alpha\\
+&\Leftrightarrow \sqrt{n}\frac{\gamma-\mu_0}{\sigma} = \Phi^{-1}(1-\alpha)=:u_{1-\alpha}\\
+&\Leftrightarrow \gamma=\mu_0+\frac{\sigma}{\sqrt{n}}u_{1-\alpha}
+\end{align*}
+
+\vspace{6pt}
+\noindent Test zum Niveau $\alpha$ für das Testen von
+\[H_0:\mu\leq\mu_0 \text{ gegen } H_1:\mu>\mu_0\]
+\textbf{lehnt $H_0$ genau dann ab, wenn}
+\[\sqrt{n}\frac{\bar{X_n}-\mu_0}{\sigma}>u_{1-\alpha},\]
+wobei $u_{1-\alpha}$ das ($1-\alpha$)-Quantil der N(0,1)-Verteilung ist.
+
+\vspace{6pt}
+\noindent Ähnlich zeigt man für vorgegebenes $\mu_0\in\mathbb{R},0<\alpha<1$ und bekanntes $\sigma>0$
+
+\vspace{6pt}
+\noindent Test zum Niveau $\alpha$ für das Testen von
+\[H_0:\mu\geq\mu_0 \text{ gegen } H_1:\mu<\mu_0\]
+\textbf{lehnt $H_0$ genau dann ab, wenn}
+\[\sqrt{n}\frac{\bar{X_n}-\mu_0}{\sigma}<u_{1-\alpha},\]
+wobei $\Phi(u_{1-\alpha})=1-\alpha$.
+
+\vspace{6pt}
+\noindent Test zum Niveau $\alpha$ für das Testen von
+\[H_0:\mu=\mu_0 \text{ gegen } H_1:\mu\neq\mu_0\]
+\textbf{lehnt $H_0$ genau dann ab, wenn}
+\[\sqrt{n}\frac{|\bar{X_n}-\mu_0|}{\sigma}>u_{1-\frac{\alpha}{2}},\]
+wobei $\Phi(u_{1-\frac{\alpha}{2}})=1-\frac{\alpha}{2}$.
+
+\noindent Die drei Tests heißen \textit{Einstichproben-Gauß-Tests}.
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 8.2:} Sei $X\sim$N($\mu,0.16$)
+\newline Eine Stichprobe vom Umfang n=10 liefert für das Stichprobenmittel den Wert
+\[\bar{x_{10}=50,294}\]
+Teste
+\[H_0:\mu=50\text{ gegen }H_1:\mu\neq50\]
+zum Niveau $\alpha=0.05$. 
+\newline Hier ist $\mu_0=50, \sigma=\sqrt{0,16}=0,4, u_{1-\frac{\alpha}{2}}=u_{0,975}=1,96$.
+\begin{align*}
+\Rightarrow \sqrt{n}\frac{|\bar{X_{10}}-\mu_0|}{\sigma} &= \frac{0.294}{0.4}\sqrt{10}\\
+&= 2.324>1.96=u_{1-\frac{\alpha}{2}}\\
+\Rightarrow& \text{ lehne }H_0\text{ ab.}
+\end{align*}
+
+
+
 
 \end{document}
