@@ -2110,7 +2110,64 @@ zum Niveau $\alpha=0.05$.
 \Rightarrow& \text{ lehne }H_0\text{ ab.}
 \end{align*}
 
+\vspace{6pt}
+\noindent\textbf{Fall B: $\mu$ und $\sigma^2$ unbekannt}
+Ersetze im Gauß-Test
+\[\sigma \text{ durch } S_n=\sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar{X_n})^2}\]
+und Quantil der N(0,1)-Verteilung durch Quantil der t($n-1$)-Verteilung. 
+\newline Dies liefert im Fall $\sigma$ unbekannt.
 
+\vspace{6pt}
+Test zum Niveau $\alpha$ für das Testen von 
+\begin{itemize}
+\item[(a)] $H_0:\mu\leq\mu_0$ gegen $H_1:\mu>\mu_0$
+\item[(b)] $H_0:\mu\geq\mu_0$ gegen $H_1:\mu<\mu_0$
+\item[(c)] $H_0:\mu=\mu_0$ gegen $H_1:\mu\neq\mu_0$ 
+\end{itemize}
+lehnt $H_0$ genau dann ab, wenn
+\begin{itemize}
+\item[(a)]$\sqrt{n}\frac{\bar{X_n}-\mu_0}{S_n}>v_{1-\alpha}$
+\item[(b)]$\sqrt{n}\frac{\bar{X_n}-\mu_0}{S_n}<-v_{1-\alpha}$
+\item[(c)]$\sqrt{n}|\frac{\bar{X_n}-\mu_0}{S_n}|>v_{1-\frac{\alpha}{2}}$ 
+\end{itemize}
+wobei $v_{1-\alpha}$ (bzw. $v_{1-\frac{\alpha}{2}}$) das $1-\alpha$ (bzw. $1-\frac{\alpha}{2}$)-Quantil der t(n-1) Verteilung ist.
+\newline Diese Tests heißen (Einstichproben-)\textit{t-Tests}.
+
+\vspace{6pt}
+\noindent\textbf{Bem. 8.1:} Signifikanzniveau $\alpha$ kontrolliert (ist eine obere Schranke für) \underline{nur} die 
+\[\text{W'keit $H_0$ abzulehnen, wenn $H_0$ richtig ist (Fehler 1. Art).}\]
+Die W'keit 
+\[\text{$H_0$ nicht abzulehnen, wenn $H_0$ falsch ist (Fehler 2. Art)}\]
+ist nicht kontrolliert.
+\newline Wähle daher $H_0$ so, dass Fehler 1. Art der Gravierendere ist. 
+
+\vspace{6pt}
+\noindent Möchte man eine Aussage \textbf{\glqq statistisch widerlegen\grqq}, wählt man die Aussage als \textbf{$H_0$}.
+
+\noindent Möchte man eine Aussage \textbf{\glqq statistisch nachweisen/untermauern/bestätigen\grqq}, wählt man die Aussage als \textbf{$H_1$}.
+
+\vspace{6pt}
+\noindent Wird $H_0$ abgelehnt, ist $H_1$ statistisch nachgewiesen zum Niveau $\alpha$. 
+Man sagt das Testergebnis ist statistisch signifikant zum Niveau $\alpha$. 
+
+\noindent Wird $H_0$ nicht abgelehnt, heißt das Testergebnis statistisch nicht signifikant zum Niveau $\alpha$. Es gilt nicht \glqq $H_0$ ist verifiziert\grqq. 
+
+\vspace{6pt}
+\noindent\textbf{Bem. 8.2:} 
+Falls für einen gegebenen Datensatz $\alpha_0\in(0,1)$ so ist, dass 
+\[H_0 \text{ zum Niveau } \alpha \text{ abgelehnt wird}\forall\alpha>\alpha_0\]
+und 
+\[H_0 \text{ zum Niveau }\alpha \text{ nicht abgelehnt wird}\forall\alpha<\alpha_0\]
+dann heißt $\alpha_0$ \textit{p-Wert} oder empirisches Signifikanzniveau. p-Wert kann als
+Meß für die Glaubwürdigkeit von $H_0$ interpretiert werden. Je kleiner der p-Wert, desto weniger glaubwürdig ist $H_0$.
+
+\vspace{6pt}
+\noindent In Bsp. 8.3, $H_0:\mu=50$ wird zum Niveau $\alpha$ genau dann abgelehnt, wenn 
+\begin{align*}
+    2.324 &> u_{1-\frac{\alpha}{2}}\\
+    \Leftrightarrow \Phi(2.324) &> \Phi(u_{1-\frac{\alpha}{2}})=1-\frac{\alpha}{2}\\
+    \Leftrightarrow \alpha &> 2(1-\Phi(2.324))=0.02\\
+\end{align*}
 
 
 \end{document}
