@@ -2155,9 +2155,9 @@ Man sagt das Testergebnis ist statistisch signifikant zum Niveau $\alpha$.
 \vspace{6pt}
 \noindent\textbf{Bem. 8.2:} 
 Falls für einen gegebenen Datensatz $\alpha_0\in(0,1)$ so ist, dass 
-\[H_0 \text{ zum Niveau } \alpha \text{ abgelehnt wird}\forall\alpha>\alpha_0\]
+\[H_0 \text{ zum Niveau } \alpha \text{ abgelehnt wird }\forall\alpha>\alpha_0\]
 und 
-\[H_0 \text{ zum Niveau }\alpha \text{ nicht abgelehnt wird}\forall\alpha<\alpha_0\]
+\[H_0 \text{ zum Niveau }\alpha \text{ nicht abgelehnt wird }\forall\alpha<\alpha_0\]
 dann heißt $\alpha_0$ \textit{p-Wert} oder empirisches Signifikanzniveau. p-Wert kann als
 Meß für die Glaubwürdigkeit von $H_0$ interpretiert werden. Je kleiner der p-Wert, desto weniger glaubwürdig ist $H_0$.
 
@@ -2168,6 +2168,58 @@ Meß für die Glaubwürdigkeit von $H_0$ interpretiert werden. Je kleiner der p-
     \Leftrightarrow \Phi(2.324) &> \Phi(u_{1-\frac{\alpha}{2}})=1-\frac{\alpha}{2}\\
     \Leftrightarrow \alpha &> 2(1-\Phi(2.324))=0.02\\
 \end{align*}
+
+
+\subsection{Der $\chi^2$-Anpassungstest}
+Sind $Z_1,\dots,Z_n$ unabhängig N($0,1$)-verteilte ZV, dann heißt die Verteilung von 
+\[V:=Z_1^2+\dots+Z_n^2\]
+\textit{Chi-Quadrat-Verteilung mit n Freiheitsgraden}. ($V\sim\chi^2(n)$)
+
+\vspace{6pt}
+\noindent\textbf{Testproblem}
+\newline Sei $X$ eine diskrete ZV mit bekannten möglichen Werten\[a_1,\dots,a_k\] und unbekannten W'keiten \[p_i=P(X=a_i), \hspace{10pt} 1\leq i\leq k\]
+Teste
+\[H_0:p_i=\bar{p_i} \text{ für }i=1,\dots,k\]
+wobei $\bar{p_1},\dots,\bar{p_k}>0$ gegebene Zahlen sind mit $\bar{p_1}+\dots+\bar{p_k}=1$.
+\newline Sei dazu $(X_1,\dots,X_n)$ eine Zufallsstichprobe und 
+\begin{align*}
+N_i: &= |\{j\in\{1,\dots,n\}:X_j=a_j\}|\\
+&= \text{ absolute Häufigkeit des Werts $a_i$ in der Stichprobe}\\
+\end{align*}
+für $i=1,\dots,k$.
+\newline Ist $H_0$ richtig, dann ist E$(N_i)=n\bar{p_i}$ und $(N_i-n\bar{p_i})^2$ sollte nicht "zu groß" sein.
+\newline Theorie liefert folgende Aussage für die Statistik
+\[Q:=\sum_{i=1}^{k}\frac{(N_i-n\bar{p_i})^2}{n\bar{p_i}}\]
+Ist 
+\[n\bar{p_i}\geq5, \hspace{10pt}1\leq i\leq k\]
+dann hat Q annähernd eine $\chi^2(k-1)$-Verteilung, falls $H_0$ richtig ist.
+\newline Ist also $x_{1-\alpha}$ das ($1-\alpha$)-Quantil der $\chi^2(k-1)$-Verteilung, so ist 
+\[P(Q\leq x_{1-\alpha})\approx 1-\alpha\]
+und 
+\[P(Q>x_{1-\alpha})\approx\alpha,\hspace{10pt} \text{ falls $H_0$ richtig ist.}\]
+Das Verfahren 
+\[\text{Lehne $H_0$ genau dann ab, wenn }Q>X_{1-\alpha}\]
+ist also ein (approximativer) Test zum Testen von $H_0$ zum Niveau $\alpha$. 
+\newline Der Test ist ein $\chi^2$-Anpassungstest.
+
+\vspace{6pt}
+\noindent\textbf{Bsp. 8.3:} 
+\newline Teste Echtheit eines Würfels zum Niveau $\alpha$=0.01. Hier ist
+\begin{align*}
+a_1=1,\dots,A_6=6,& \hspace{10pt}k=6\\
+\bar{p_i}=\frac{1}{6},& \hspace{10pt}1\leq i\leq 6\\
+H_0:p_i=\frac{1}{6},& \hspace{10pt}i=1,\dots,6\\
+\end{align*}
+In $n=120$ Würfen waren die Häufigkeiten der 6 Seiten
+\[n_1=29,n_2=11,n_3=26,n_4=12,n_5=27,n_6=15\]
+$n\bar{p_i}=20\geq 5$ für alle $i \hspace{10pt} \Rightarrow \chi^2$-Test anwenden. 
+\begin{align*}
+q &= \sum_{i=1}^{6}\frac{(N_i-n\bar{p_i})^2}{n\bar{p_i}}=\frac{1}{20}\sum_{i=1}^{6}(n_i-20)^2=\frac{1}{20}(9^2+9^2+6^2+8^2+7^2+5^2)\\
+&= 16,8
+\end{align*}
+$(1-\alpha)$-Quantil der $\chi^2(5)$-Verteilung: $X_0,99=15,09$
+\[q=16.9>x_0,99\]
+Lehne Nullhypothese \glqq Würfel ist echt\grqq ab.
 
 
 \end{document}
